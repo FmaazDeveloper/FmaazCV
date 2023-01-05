@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 26, 2022 at 08:27 PM
+-- Generation Time: Jan 05, 2023 at 10:21 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `fmaaz.cv`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`email`, `password`) VALUES
+('FmaazDeveloper@gmail.com', 'Mohammad@2004');
 
 -- --------------------------------------------------------
 
@@ -65,6 +84,13 @@ CREATE TABLE IF NOT EXISTS `education` (
   `end_date` date NOT NULL,
   PRIMARY KEY (`education_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `education`
+--
+
+INSERT INTO `education` (`education_ID`, `issuer_arabic`, `major_arabic`, `level_arabic`, `issuer_english`, `major_english`, `level_english`, `average`, `average_from`, `photo`, `start_date`, `end_date`) VALUES
+(1, 'جامعة الملك سعود', 'غبزبغعزهكبغع', 'دبلوم', 'hmy,uyi.u7', 'ihoihn', 'Diploma', 4.25, '5.00', 'GitHub QR.png', '2023-01-06', '2023-01-20');
 
 -- --------------------------------------------------------
 
