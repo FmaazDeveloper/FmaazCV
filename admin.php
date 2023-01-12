@@ -151,12 +151,6 @@
                                                 </div>
                                                 <div class="form-floating">
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="certificate photo | صورة الشهادة" disabled>
-                                                        <input type="file" name="education_photo" accept="image/*" class="form-control" aria-label="Text input with segmented dropdown button" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-floating">
-                                                    <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Start date | تاريخ البداية" disabled>
                                                         <input type="date" name="education_start_date" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
@@ -170,11 +164,15 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <br>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <br>
                     <?php
                         if(!empty($_POST["education_issuer_arabic"]) && !empty($_POST["education_major_arabic"]) && !empty($_POST["education_level_arabic"]) &&
                         !empty($_POST["education_issuer_english"]) && !empty($_POST["education_major_english"]) && !empty($_POST["education_level_english"]) &&
-                        !empty($_POST["education_average"]) &&!empty($_POST["education_average_from"]) && !empty($_POST["education_photo"]) &&
+                        !empty($_POST["education_average"]) &&!empty($_POST["education_average_from"]) &&
                         !empty($_POST["education_start_date"]) && !empty($_POST["education_end_date"]))
                         {
                             if(isset($_POST["education_insert_info"]) && ($_POST["education_average"] <= $_POST["education_average_from"]) &&
@@ -206,44 +204,140 @@
                                                     '.$_SESSION["education_ID"].' , "'.$_POST["education_issuer_arabic"].'" , "'.$_POST["education_major_arabic"].'" ,
                                                     "'.$_POST["education_level_arabic"].'" , "'.$_POST["education_issuer_english"].'" , "'.$_POST["education_major_english"].'" ,
                                                     "'.$_POST["education_level_english"].'" , '.$_POST["education_average"].' , '.$_POST["education_average_from"].' ,
-                                                    "'.$_POST["education_photo"].'" , "'.$_POST["education_start_date"].'" , "'.$_POST["education_end_date"].'"
+                                                    "'.$_POST["education_start_date"].'" , "'.$_POST["education_end_date"].'"
                                                 )
                                             ');
                                             if($insert_education_info->execute())
                                                 {
                                                     $_SESSION["submit_type"] = null;
                                                     $_SESSION["type"] = null;
-                                                    echo '<center><div class="alert alert-success" role="alert">تم إضافة بيانات التعليم بنجاح</div></center>';
+                                                    echo '
+                                                        <center>
+                                                            <div class="row align-items-center justify-content-center">
+                                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                                    <div class="alert alert-success" role="alert">تم إضافة بيانات التعليم بنجاح</div>
+                                                                </div>
+                                                            </div>
+                                                        </center>
+                                                    ';
                                                     header("refresh:2;url= admin.php");
                                                 }
                                             else
                                                 {
-                                                    echo '<center><div class="alert alert-danger" role="alert">! حدث خطأ ما </div></center>';
+                                                    echo '
+                                                        <center>
+                                                            <div class="row align-items-center justify-content-center">
+                                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                                    <div class="alert alert-danger" role="alert">! حدث خطأ ما </div>
+                                                                </div>
+                                                            </div>
+                                                        </center>
+                                                    ';
                                                     header("refresh:2;url= admin.php");
                                                 }
                                         }
                                     echo '</div></div></div><br>';
                                 }
                                 elseif(($_POST["education_level_arabic"] == 'الثانوية العامة') && ($_POST["education_level_english"] != 'High school'))
-                                        echo '<center><div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div></center>';
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                ';
                                 elseif(($_POST["education_level_arabic"] == 'دبلوم') && ($_POST["education_level_english"] != 'Diploma'))
-                                        echo '<center><div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div></center>';
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                ';
                                 elseif(($_POST["education_level_arabic"] == 'بكالرويس') && ($_POST["education_level_english"] != 'Baccalaureus'))
-                                        echo '<center><div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div></center>';
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                ';
                                 elseif(($_POST["education_level_arabic"] == 'ماجستير') && ($_POST["education_level_english"] != 'Master'))
-                                        echo '<center><div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div></center>';
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                ';
                                 elseif(($_POST["education_level_arabic"] == 'دكتوراه') && ($_POST["education_level_english"] != 'PhD'))
-                                        echo '<center><div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div></center>';
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                ';
                                 elseif(($_POST["education_average_from"] == 100) && ($_POST["education_level_arabic"] != 'الثانوية العامة'))
-                                        echo '<center><div class="alert alert-danger" role="alert">! المعدل من" المدخل يجب أن يساوي 4.00 أو 5.00"</div></center>';
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! المعدل من" المدخل يجب أن يساوي 4.00 أو 5.00"</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                ';
                                 elseif(($_POST["education_average_from"] == 4.00) || ($_POST["education_average_from"] == 5.00) && ($_POST["education_level_arabic"] == 'الثانوية العامة'))
-                                        echo '<center><div class="alert alert-danger" role="alert">! المعدل من" المدخل يجب أن يساوي 100"</div></center>';
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! المعدل من" المدخل يجب أن يساوي 100"</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                ';        
                                 elseif(($_POST["education_average"] > $_POST["education_average_from"]))
-                                        echo '<center><div class="alert alert-danger" role="alert">! المعدل المدخل أكبر من '.$_POST["education_average_from"].'</div></center>';
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! المعدل المدخل أكبر من '.$_POST["education_average_from"].'</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                '; 
                                 elseif(($_POST["education_average"] < ($_POST["education_average_from"]*0.7)))
-                                        echo '<center><div class="alert alert-danger" role="alert">! المعدل المدخل أقل من '.$_POST["education_average_from"]*0.7.'</div></center>';
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! المعدل المدخل أقل من '.$_POST["education_average_from"]*0.7.'</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                ';         
                                 elseif(($_POST["education_start_date"] >= ($_POST["education_end_date"])))
-                                        echo '<center><div class="alert alert-danger" role="alert">! يجب أن يكون تاريخ البداية أقل من تاريخ النهاية</div></center>';
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! يجب أن يكون تاريخ البداية أقل من تاريخ النهاية</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                ';         
                         }
                 }
             //Expriance - Insert
@@ -288,12 +382,6 @@
                                                 <center><h4>English | عربي</h4></center>
                                                 <div class="form-floating">
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="certificate photo | صورة الشهادة" disabled>
-                                                        <input type="file" name="experience_photo" accept="image/*" class="form-control" aria-label="Text input with segmented dropdown button" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-floating">
-                                                    <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Start date | تاريخ البداية" disabled>
                                                         <input type="date" name="experience_start_date" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
@@ -307,11 +395,15 @@
                                                 </div>
                                             </form>
                                         </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
                         <br>
                     <?php
                         if(!empty($_POST["experience_issuer_arabic"]) && !empty($_POST["experience_job_title_arabic"]) && !empty($_POST["experience_brief_arabic"]) &&
                         !empty($_POST["experience_issuer_english"]) && !empty($_POST["experience_job_title_english"]) && !empty($_POST["experience_brief_english"]) &&
-                        !empty($_POST["experience_photo"]) && !empty($_POST["experience_start_date"]) && !empty($_POST["experience_end_date"]))
+                        !empty($_POST["experience_start_date"]) && !empty($_POST["experience_end_date"]))
                         {
                             if(isset($_POST["experience_insert_info"]) && ($_POST["experience_start_date"] < ($_POST["experience_end_date"])))
                                 {
@@ -334,26 +426,50 @@
                                                     '.$_SESSION["experience_ID"].' , "'.$_POST["experience_issuer_arabic"].'" , "'.$_POST["experience_job_title_arabic"].'" ,
                                                     "'.$_POST["experience_brief_arabic"].'" , "'.$_POST["experience_issuer_english"].'" ,
                                                     "'.$_POST["experience_job_title_english"].'" , "'.$_POST["experience_brief_english"].'" ,
-                                                    "'.$_POST["experience_start_date"].'" , "'.$_POST["experience_end_date"].'" , "'.$_POST["experience_photo"].'"
+                                                    "'.$_POST["experience_start_date"].'" , "'.$_POST["experience_end_date"].'"
                                                 )
                                             ');
                                             if($insert_experience_info->execute())
                                                 {
                                                     $_SESSION["submit_type"] = null;
                                                     $_SESSION["type"] = null;
-                                                    echo '<center><div class="alert alert-success" role="alert">تم إضافة بيانات الخبرة بنجاح</div></center>';
+                                                    echo '
+                                                        <center>
+                                                            <div class="row align-items-center justify-content-center">
+                                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                                    <div class="alert alert-success" role="alert">تم إضافة بيانات الخبرة بنجاح</div>
+                                                                </div>
+                                                            </div>
+                                                        </center>
+                                                    ';
                                                     header("refresh:2;url= admin.php");
                                                 }
                                             else
                                                 {
-                                                    echo '<center><div class="alert alert-danger" role="alert">! حدث خطأ ما </div></center>';
+                                                    echo '
+                                                        <center>
+                                                            <div class="row align-items-center justify-content-center">
+                                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                                <div class="alert alert-danger" role="alert">! حدث خطأ ما </div>
+                                                                </div>
+                                                            </div>
+                                                        </center>
+                                                    ';
                                                     header("refresh:2;url= admin.php");
                                                 }
                                         }
                                     echo '</div></div></div><br>';
                                 }
                                 elseif(($_POST["experience_start_date"] >= ($_POST["experience_end_date"])))
-                                        echo '<center><div class="alert alert-danger" role="alert">! يجب أن يكون تاريخ البداية أقل من تاريخ النهاية</div></center>';
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! يجب أن يكون تاريخ البداية أقل من تاريخ النهاية</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                ';
                         }
                 }
             //Courses - Insert
@@ -397,15 +513,10 @@
         
                                                 <center><h4>English | عربي</h4></center>
                                                 <div class="form-floating">
-                                                    <div class="input-group mb-3">
-                                                        <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="certificate photo | صورة الشهادة" disabled>
-                                                        <input type="file" name="courses_photo" accept="image/*" class="form-control" aria-label="Text input with segmented dropdown button" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-floating">
                                                         <input type="number" name="courses_hours" max="99" class="form-control" id="floatingPassword" placeholder="Hours | الساعات" required>
                                                         <label for="floatingPassword">Hours | الساعات</label>
                                                     </div>
+                                                    <br>
                                                 <div class="form-floating">
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Start date | تاريخ البداية" disabled>
@@ -421,12 +532,15 @@
                                                 </div>
                                             </form>
                                         </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
                         <br>
                     <?php
                         if(!empty($_POST["courses_issuer_arabic"]) && !empty($_POST["course_title_arabic"]) && !empty($_POST["courses_brief_arabic"]) &&
                         !empty($_POST["courses_issuer_english"]) && !empty($_POST["course_title_english"]) && !empty($_POST["courses_brief_english"]) &&
-                        !empty($_POST["courses_photo"]) && !empty($_POST["courses_hours"]) && !empty($_POST["courses_start_date"]) &&
-                        !empty($_POST["courses_end_date"]))
+                        !empty($_POST["courses_hours"]) && !empty($_POST["courses_start_date"]) && !empty($_POST["courses_end_date"]))
                             {
                                 if(isset($_POST["courses_insert_info"]) && ($_POST["courses_start_date"] < ($_POST["courses_end_date"])))
                                     {
@@ -449,26 +563,50 @@
                                                         '.$_SESSION["course_ID"].' , "'.$_POST["courses_issuer_arabic"].'" , "'.$_POST["course_title_arabic"].'" ,
                                                         "'.$_POST["courses_brief_arabic"].'" , "'.$_POST["courses_issuer_english"].'" , "'.$_POST["course_title_english"].'" ,
                                                         "'.$_POST["courses_brief_english"].'" , '.$_POST["courses_hours"].' ,
-                                                        "'.$_POST["courses_start_date"].'" , "'.$_POST["courses_end_date"].'" , "'.$_POST["courses_photo"].'"
+                                                        "'.$_POST["courses_start_date"].'" , "'.$_POST["courses_end_date"].'"
                                                     )
                                                 ');
                                                 if($insert_courses_info->execute())
                                                     {
                                                         $_SESSION["submit_type"] = null;
                                                         $_SESSION["type"] = null;
-                                                        echo '<center><div class="alert alert-success" role="alert">تم إضافة بيانات الدورة بنجاح</div></center>';
+                                                        echo '
+                                                        <center>
+                                                            <div class="row align-items-center justify-content-center">
+                                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                                    <div class="alert alert-success" role="alert">تم إضافة بيانات الدورة بنجاح</div>
+                                                                </div>
+                                                            </div>
+                                                        </center>
+                                                        ';
                                                         header("refresh:2;url= admin.php");
                                                     }
                                                 else
                                                     {
-                                                        echo '<center><div class="alert alert-danger" role="alert">! حدث خطأ ما </div></center>';
+                                                        echo '
+                                                        <center>
+                                                            <div class="row align-items-center justify-content-center">
+                                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                                    <div class="alert alert-danger" role="alert">! حدث خطأ ما </div>
+                                                                </div>
+                                                            </div>
+                                                        </center>
+                                                        ';
                                                         header("refresh:2;url= admin.php");
                                                     }
                                             }
                                         echo '</div></div></div><br>';
                                     }
                                     elseif(($_POST["courses_start_date"] >= ($_POST["courses_end_date"])))
-                                        echo '<center><div class="alert alert-danger" role="alert">! يجب أن يكون تاريخ البداية أقل من تاريخ النهاية</div></center>';
+                                    echo '
+                                        <center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="alert alert-danger" role="alert">! يجب أن يكون تاريخ البداية أقل من تاريخ النهاية</div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    ';
                             }
                 }
             //Hobbies
@@ -690,12 +828,6 @@
                                                 </div>
                                                 <div class="form-floating">
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="certificate photo | صورة الشهادة" disabled>
-                                                        <input type="file" name="education_photo" accept="image/*" class="form-control" aria-label="Text input with segmented dropdown button" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-floating">
-                                                    <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Start date | تاريخ البداية" disabled>
                                                         <input type="date" name="education_start_date" value="<?php echo $print["start_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
@@ -716,15 +848,14 @@
                         }
                                 if(!empty($_POST["education_issuer_arabic"]) && !empty($_POST["education_major_arabic"]) && !empty($_POST["education_level_arabic"]) &&
                                 !empty($_POST["education_issuer_english"]) && !empty($_POST["education_major_english"]) && !empty($_POST["education_level_english"]) &&
-                                !empty($_POST["education_average"]) &&!empty($_POST["education_average_from"]) && !empty($_POST["education_photo"]) &&
+                                !empty($_POST["education_average"]) &&!empty($_POST["education_average_from"]) &&
                                 !empty($_POST["education_start_date"]) && !empty($_POST["education_end_date"]))
                                 {
                                     $_SESSION["education_issuer_arabic"] = $_POST["education_issuer_arabic"];$_SESSION["education_major_arabic"] = $_POST["education_major_arabic"];
                                     $_SESSION["education_level_arabic"] = $_POST["education_level_arabic"];$_SESSION["education_issuer_english"] = $_POST["education_issuer_english"];
                                     $_SESSION["education_major_english"] = $_POST["education_major_english"];$_SESSION["education_level_english"] = $_POST["education_level_english"];
                                     $_SESSION["education_average"] = $_POST["education_average"];$_SESSION["education_average_from"] = $_POST["education_average_from"];
-                                    $_SESSION["education_photo"] = $_POST["education_photo"];$_SESSION["education_start_date"] = $_POST["education_start_date"];
-                                    $_SESSION["education_end_date"] = $_POST["education_end_date"];
+                                    $_SESSION["education_start_date"] = $_POST["education_start_date"];$_SESSION["education_end_date"] = $_POST["education_end_date"];
                                     
                                     if(isset($_POST["education_update_info"]) && ($_POST["education_average"] <= $_POST["education_average_from"]) &&
                                     ($_POST["education_average"] >= ($_POST["education_average_from"]*0.7)) && ((($_POST["education_level_arabic"] == 'الثانوية العامة') &&
@@ -748,7 +879,7 @@
                                                             </tr>
                                                             <tr class="table-success">
                                                                 <th> الجهه </th> <th> التخصص </th> <th> المرحله </th> <th> Issuer </th> <th> Major </th>
-                                                                <th> Level </th> <th> المعدل من </th> <th> المعدل </th> <th> الصورة </th> <th> تاريخ البداية </th>
+                                                                <th> Level </th> <th> المعدل من </th> <th> المعدل </th> <th> تاريخ البداية </th>
                                                                 <th> تاريخ النهاية </th>
                                                             </tr>
                                                             <tr class="table-info">
@@ -756,7 +887,6 @@
                                                                 <th> '.$_POST["education_level_arabic"].' </th> <th> '.$_POST["education_issuer_english"].' </th>
                                                                 <th> '.$_POST["education_major_english"].' </th> <th> '.$_POST["education_level_english"].' </th>
                                                                 <th> '.$_POST["education_average_from"].' </th> <th> '.$_POST["education_average"].' </th>
-                                                                <th> '.$_POST["education_photo"].' </th>
                                                                 <th> '.$_POST["education_start_date"].' </th> <th> '.$_POST["education_end_date"].' </th>
                                                             </tr>
                                                         </table>
@@ -776,26 +906,106 @@
                                             ';
                                             // echo '</div></div></div><br>';
                                     }
-                                        elseif(($_POST["education_level_arabic"] == 'الثانوية العامة') && ($_POST["education_level_english"] != 'High school'))
-                                                echo '<center><div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div></center>';
-                                        elseif(($_POST["education_level_arabic"] == 'دبلوم') && ($_POST["education_level_english"] != 'Diploma'))
-                                                echo '<center><div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div></center>';
-                                        elseif(($_POST["education_level_arabic"] == 'بكالرويس') && ($_POST["education_level_english"] != 'Baccalaureus'))
-                                                echo '<center><div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div></center>';
-                                        elseif(($_POST["education_level_arabic"] == 'ماجستير') && ($_POST["education_level_english"] != 'Master'))
-                                                echo '<center><div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div></center>';
-                                        elseif(($_POST["education_level_arabic"] == 'دكتوراه') && ($_POST["education_level_english"] != 'PhD'))
-                                                echo '<center><div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div></center>';
-                                        elseif(($_POST["education_average_from"] == 100) && ($_POST["education_level_arabic"] != 'الثانوية العامة'))
-                                                echo '<center><div class="alert alert-danger" role="alert">! المعدل من" المدخل يجب أن يساوي 4.00 أو 5.00"</div></center>';
-                                        elseif(($_POST["education_average_from"] == 4.00) || ($_POST["education_average_from"] == 5.00) && ($_POST["education_level_arabic"] == 'الثانوية العامة'))
-                                                echo '<center><div class="alert alert-danger" role="alert">! المعدل من" المدخل يجب أن يساوي 100"</div></center>';
-                                        elseif(($_POST["education_average"] > $_POST["education_average_from"]))
-                                                echo '<center><div class="alert alert-danger" role="alert">! المعدل المدخل أكبر من '.$_POST["average_from"].'</div></center>';
-                                        elseif(($_POST["education_average"] < ($_POST["education_average_from"]*0.7)))
-                                                echo '<center><div class="alert alert-danger" role="alert">! المعدل المدخل أقل من '.$_POST["average_from"]*0.7.'</div></center>';
-                                        elseif(($_POST["education_start_date"] >= ($_POST["education_end_date"])))
-                                                echo '<center><div class="alert alert-danger" role="alert">! يجب أن يكون تاريخ البداية أقل من تاريخ النهاية</div></center>';
+                                    elseif(($_POST["education_level_arabic"] == 'الثانوية العامة') && ($_POST["education_level_english"] != 'High school'))
+                                    echo '
+                                        <center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    ';
+                                    elseif(($_POST["education_level_arabic"] == 'دبلوم') && ($_POST["education_level_english"] != 'Diploma'))
+                                    echo '
+                                        <center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    ';
+                                    elseif(($_POST["education_level_arabic"] == 'بكالرويس') && ($_POST["education_level_english"] != 'Baccalaureus'))
+                                    echo '
+                                        <center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    ';
+                                    elseif(($_POST["education_level_arabic"] == 'ماجستير') && ($_POST["education_level_english"] != 'Master'))
+                                    echo '
+                                        <center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    ';
+                                    elseif(($_POST["education_level_arabic"] == 'دكتوراه') && ($_POST["education_level_english"] != 'PhD'))
+                                    echo '
+                                        <center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="alert alert-danger" role="alert">! المستوى التعليمي المدخل غير متطابق</div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    ';
+                                    elseif(($_POST["education_average_from"] == 100) && ($_POST["education_level_arabic"] != 'الثانوية العامة'))
+                                    echo '
+                                        <center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="alert alert-danger" role="alert">! المعدل من" المدخل يجب أن يساوي 4.00 أو 5.00"</div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    ';
+                                    elseif(($_POST["education_average_from"] == 4.00) || ($_POST["education_average_from"] == 5.00) && ($_POST["education_level_arabic"] == 'الثانوية العامة'))
+                                    echo '
+                                        <center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="alert alert-danger" role="alert">! المعدل من" المدخل يجب أن يساوي 100"</div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    ';        
+                                    elseif(($_POST["education_average"] > $_POST["education_average_from"]))
+                                    echo '
+                                        <center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="alert alert-danger" role="alert">! المعدل المدخل أكبر من '.$_POST["education_average_from"].'</div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    '; 
+                                    elseif(($_POST["education_average"] < ($_POST["education_average_from"]*0.7)))
+                                    echo '
+                                        <center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="alert alert-danger" role="alert">! المعدل المدخل أقل من '.$_POST["education_average_from"]*0.7.'</div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    ';         
+                                    elseif(($_POST["education_start_date"] >= ($_POST["education_end_date"])))
+                                    echo '
+                                        <center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="alert alert-danger" role="alert">! يجب أن يكون تاريخ البداية أقل من تاريخ النهاية</div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    ';
                                 }
                                 if(isset($_POST["confirm_update"]))
                                         {
@@ -808,7 +1018,7 @@
                                                             major_arabic = "'.$_SESSION["education_major_arabic"].'" , level_arabic = "'.$_SESSION["education_level_arabic"].'" ,
                                                             issuer_english = "'.$_SESSION["education_issuer_english"].'" , major_english = "'.$_SESSION["education_major_english"].'" ,
                                                             level_english = "'.$_SESSION["education_level_english"].'" , average = '.$_SESSION["education_average"].' ,
-                                                            average_from = '.$_SESSION["education_average_from"].' , photo = "'.$_SESSION["education_photo"].'" ,
+                                                            average_from = '.$_SESSION["education_average_from"].' ,
                                                             start_date = "'.$_SESSION["education_start_date"].'" , end_date = "'.$_SESSION["education_end_date"].'"
                                                             WHERE education_ID = '.$_SESSION["select_education_ID"].'
                                                     ');
@@ -947,12 +1157,6 @@
                                                 <center><h4>English | عربي</h4></center>
                                                 <div class="form-floating">
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="certificate photo | صورة الشهادة" disabled>
-                                                        <input type="file" name="experience_photo" value="<?php echo $print["photo"]; ?>" accept="image/*" class="form-control" aria-label="Text input with segmented dropdown button" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-floating">
-                                                    <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Start date | تاريخ البداية" disabled>
                                                         <input type="date" name="experience_start_date" value="<?php echo $print["start_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
@@ -967,18 +1171,18 @@
                                             </form>
                                         </div>
                                         </div>
+                                    </div>
                                 <?php
                             }
                         }
                         if(!empty($_POST["experience_issuer_arabic"]) && !empty($_POST["experience_job_title_arabic"]) && !empty($_POST["experience_brief_arabic"]) &&
                         !empty($_POST["experience_issuer_english"]) && !empty($_POST["experience_job_title_english"]) && !empty($_POST["experience_brief_english"]) &&
-                        !empty($_POST["experience_photo"]) && !empty($_POST["experience_start_date"]) && !empty($_POST["experience_end_date"]))
+                        !empty($_POST["experience_start_date"]) && !empty($_POST["experience_end_date"]))
                         {
                             $_SESSION["experience_issuer_arabic"] = $_POST["experience_issuer_arabic"]; $_SESSION["experience_job_title_arabic"] = $_POST["experience_job_title_arabic"];
                             $_SESSION["experience_brief_arabic"] = $_POST["experience_brief_arabic"]; $_SESSION["experience_issuer_english"] = $_POST["experience_issuer_english"];
                             $_SESSION["experience_job_title_english"] = $_POST["experience_job_title_english"]; $_SESSION["experience_brief_english"] = $_POST["experience_brief_english"];
-                            $_SESSION["experience_photo"] = $_POST["experience_photo"]; $_SESSION["experience_start_date"] = $_POST["experience_start_date"];
-                            $_SESSION["experience_end_date"] = $_POST["experience_end_date"];
+                            $_SESSION["experience_start_date"] = $_POST["experience_start_date"]; $_SESSION["experience_end_date"] = $_POST["experience_end_date"];
 
                             if(isset($_POST["experience_update_info"]) && ($_POST["experience_start_date"] < ($_POST["experience_end_date"])))
                                 {
@@ -999,14 +1203,13 @@
                                                         </tr>
                                                         <tr class="table-success">
                                                         <th> الجهه </th> <th> المسمى الوظيفي </th> <th> نبذة عن الخبرة </th> <th> Issuer </th> <th> Job title </th>
-                                                        <th> Experience brief </th> <th> تاريخ البداية </th> <th> تاريخ النهاية </th> <th> الصورة </th>
+                                                        <th> Experience brief </th> <th> تاريخ البداية </th> <th> تاريخ النهاية </th>
                                                         </tr>
                                                         <tr class="table-info">
                                                         <th> '.$_POST["experience_issuer_arabic"].' </th> <th> '.$_POST["experience_job_title_arabic"].' </th>
                                                         <th> '.$_POST["experience_brief_arabic"].' </th> <th> '.$_POST["experience_issuer_english"].' </th>
                                                         <th> '.$_POST["experience_job_title_english"].' </th> <th> '.$_POST["experience_brief_english"].' </th>
                                                         <th> '.$_POST["experience_start_date"].' </th> <th> '.$_POST["experience_end_date"].' </th>
-                                                        <th> '.$_POST["experience_photo"].' </th>
                                                         </tr>
                                                     </table>
                                             ';
@@ -1025,7 +1228,17 @@
                                             </div>
                                             </center>
                                         ';
-                                    }
+                                }
+                                elseif(($_POST["experience_start_date"] >= ($_POST["experience_end_date"])))
+                                echo '
+                                    <center>
+                                        <div class="row align-items-center justify-content-center">
+                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                <div class="alert alert-danger" role="alert">! يجب أن يكون تاريخ البداية أقل من تاريخ النهاية</div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                ';
                         }
                                     if(isset($_POST["confirm_update"]))
                                         {
@@ -1034,8 +1247,7 @@
                                             issuer_arabic = "'.$_SESSION["experience_issuer_arabic"].'" , job_title_arabic = "'.$_SESSION["experience_job_title_arabic"].'" ,
                                             brief_arabic = "'.$_SESSION["experience_brief_arabic"].'" , issuer_english = "'.$_SESSION["experience_issuer_english"].'" ,
                                             job_title_english = "'.$_SESSION["experience_job_title_english"].'" , brief_english = "'.$_SESSION["experience_brief_english"].'" ,
-                                            start_date = "'.$_SESSION["experience_start_date"].'" , end_date = "'.$_SESSION["experience_end_date"].'" ,
-                                            photo = "'.$_SESSION["experience_photo"].'"
+                                            start_date = "'.$_SESSION["experience_start_date"].'" , end_date = "'.$_SESSION["experience_end_date"].'"
                                             WHERE experience_ID = '.$_SESSION["select_experience_ID"].'
                                             ');
                                             if($update_experience->execute())
@@ -1169,12 +1381,6 @@
         
                                                 <center><h4>English | عربي</h4></center>
                                                 <div class="form-floating">
-                                                    <div class="input-group mb-3">
-                                                        <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="certificate photo | صورة الشهادة" disabled>
-                                                        <input type="file" name="courses_photo" value="<?php echo $print["photo"]; ?>" accept="image/*" class="form-control" aria-label="Text input with segmented dropdown button" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-floating">
                                                         <input type="number" name="courses_hours" value="<?php echo $print["hours"]; ?>" max="99" class="form-control" id="floatingPassword" placeholder="Hours | الساعات" required>
                                                         <label for="floatingPassword">Hours | الساعات</label>
                                                     </div>
@@ -1193,17 +1399,18 @@
                                                 </div>
                                             </form>
                                         </div>
+                                        </div>
+                                    </div>
                                         <?php
                             }   
                         }
                                             if(!empty($_POST["courses_issuer_arabic"]) && !empty($_POST["course_title_arabic"]) && !empty($_POST["courses_brief_arabic"]) &&
                                             !empty($_POST["courses_issuer_english"]) && !empty($_POST["course_title_english"]) && !empty($_POST["courses_brief_english"]) &&
-                                            !empty($_POST["courses_photo"]) && !empty($_POST["courses_hours"]) && !empty($_POST["courses_start_date"]) &&
-                                            !empty($_POST["courses_end_date"]))
+                                            !empty($_POST["courses_hours"]) && !empty($_POST["courses_start_date"]) && !empty($_POST["courses_end_date"]))
                                             {
                                                 $_SESSION["courses_issuer_arabic"] = $_POST["courses_issuer_arabic"];$_SESSION["course_title_arabic"] = $_POST["course_title_arabic"];
                                                 $_SESSION["courses_issuer_english"] = $_POST["courses_issuer_english"];$_SESSION["course_title_english"] = $_POST["course_title_english"];
-                                                $_SESSION["courses_brief_english"] = $_POST["courses_brief_english"];$_SESSION["courses_photo"] = $_POST["courses_photo"];
+                                                $_SESSION["courses_brief_english"] = $_POST["courses_brief_english"];
                                                 $_SESSION["courses_hours"] = $_POST["courses_hours"];$_SESSION["courses_start_date"] = $_POST["courses_start_date"];
                                                 $_SESSION["courses_end_date"] = $_POST["courses_end_date"];$_SESSION["courses_brief_arabic"] = $_POST["courses_brief_arabic"];
 
@@ -1226,14 +1433,14 @@
                                                             </tr>
                                                             <tr class="table-success">
                                                             <th> الجهه </th> <th> مسمى الدورة </th> <th> نبذة عن الدورة </th> <th> Issuer </th>
-                                                            <th> Course title </th> <th> Course brief </th> <th> الساعات </th> <th> الصورة </th>
+                                                            <th> Course title </th> <th> Course brief </th> <th> الساعات </th>
                                                             <th> تاريخ البداية </th> <th> تاريخ النهاية </th>
                                                             </tr>
                                                             <tr class="table-info">
                                                             <th> '.$_SESSION["courses_issuer_arabic"].' </th> <th> '.$_SESSION["course_title_arabic"].' </th>
                                                             <th> '.$_SESSION["courses_brief_arabic"].' </th> <th> '.$_SESSION["courses_issuer_english"].' </th>
                                                             <th> '.$_SESSION["course_title_english"].' </th> <th> '.$_SESSION["courses_brief_english"].' </th>
-                                                            <th> '.$_SESSION["courses_hours"].' </th> <th> '.$_SESSION["courses_photo"].' </th>
+                                                            <th> '.$_SESSION["courses_hours"].' </th>
                                                             <th> '.$_SESSION["courses_start_date"].' </th> <th> '.$_SESSION["courses_end_date"].' </th>
                                                             </tr>
                                                             </table>
@@ -1254,6 +1461,16 @@
                                                         </center>
                                                         ';
                                                 }   
+                                                elseif(($_POST["courses_start_date"] >= ($_POST["courses_end_date"])))
+                                                echo '
+                                                    <center>
+                                                        <div class="row align-items-center justify-content-center">
+                                                            <div class="col-sm-8 col-md-8 col-lg-5">
+                                                                <div class="alert alert-danger" role="alert">! يجب أن يكون تاريخ البداية أقل من تاريخ النهاية</div>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                ';
                                             }
                                                     if(isset($_POST["confirm_update"]))
                                                     {
@@ -1262,7 +1479,7 @@
                                                         issuer_arabic = "'.$_SESSION["courses_issuer_arabic"].'" , course_title_arabic = "'.$_SESSION["course_title_arabic"].'" , 
                                                         brief_arabic = "'.$_SESSION["courses_brief_arabic"].'" , issuer_english = "'.$_SESSION["courses_issuer_english"].'" , 
                                                         course_title_english = "'.$_SESSION["course_title_english"].'" , brief_english = "'.$_SESSION["courses_brief_english"].'" , 
-                                                        photo = "'.$_SESSION["courses_photo"].'" , hours = '.$_SESSION["courses_hours"].' , 
+                                                        hours = '.$_SESSION["courses_hours"].' , 
                                                         start_date = "'.$_SESSION["courses_start_date"].'" , end_date = "'.$_SESSION["courses_end_date"].'"
                                                         WHERE course_ID = '.$_SESSION["select_course_ID"].'
                                                         ');
@@ -1325,7 +1542,7 @@
                                 <form method="POST" class="mt-6 border p-4 bg-light shadow" style="text-align: center;">
                                     <div class="form-floating">
                                         <div class="dropdown">
-                                            <select name="delete_education" aria-label=".form-select-sm example" class="form-control" dir="rtl" required>
+                                            <select name="select_delete_education" aria-label=".form-select-sm example" class="form-control" dir="rtl" required>
                                                 <option selected value="" disabled>اختر الشهادة</option>
                                                 <?php
                                                     if($connect_database)
@@ -1335,10 +1552,7 @@
                                                         foreach($select_education_id as $print)
                                                         {
                                                             echo '<option value"'.$print["education_ID"].'">الجهة : '.$print["issuer_arabic"].' | التخصص : '.$print["major_arabic"].' | المرحله : '.$print["level_arabic"].'</option>';
-                                                            $_SESSION["education_ID"] = $print["education_ID"];
                                                         }
-                                                        if(empty($_SESSION["education_ID"]))
-                                                        $_SESSION["education_ID"] = 0;
                                                     }
                                                 ?>
                                             </select>
@@ -1352,8 +1566,12 @@
                         </div>
                     </div>
                     <?php
-                    if(!empty($_SESSION["education_ID"] && isset($_POST["delete_education"])))
+                    if(isset($_POST["delete_education"]))
                     {
+                        $_SESSION["education_ID"] = $_POST["select_delete_education"];
+                        if(empty($_SESSION["education_ID"]))
+                        $_SESSION["education_ID"] = 0;
+
                         $comfirm_education_id = $connect_database->prepare('SELECT * FROM education WHERE education_ID = '.$_SESSION["education_ID"].'');
                         $comfirm_education_id->execute();
 
@@ -1401,7 +1619,7 @@
                                 $_SESSION["submit_type"] = null;
                                 $_SESSION["type"] = null;
                                 echo '    
-                                    <center>
+                                    <center><br>
                                     <div class="row align-items-center justify-content-center">
                                     <div class="col-sm-8 col-md-8 col-lg-5">
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -1416,7 +1634,7 @@
                             else
                             {
                                 echo '    
-                                    <center>
+                                    <center><br>
                                     <div class="row align-items-center justify-content-center">
                                     <div class="col-sm-8 col-md-8 col-lg-5">
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -1431,7 +1649,7 @@
                         elseif(isset($_POST["cancel_delete"]))
                         { 
                             echo '    
-                                <center>
+                                <center><br>
                                 <div class="row align-items-center justify-content-center">
                                 <div class="col-sm-8 col-md-8 col-lg-5">
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -1455,7 +1673,7 @@
                                 <form method="POST" class="mt-6 border p-4 bg-light shadow" style="text-align: center;">
                                     <div class="form-floating">
                                         <div class="dropdown">
-                                            <select name="delete_education" aria-label=".form-select-sm example" class="form-control" dir="rtl" required>
+                                            <select name="select_delete_experience" aria-label=".form-select-sm example" class="form-control" dir="rtl" required>
                                                 <option selected value="" disabled>اختر الشهادة</option>
                                                 <?php
                                                     if($connect_database)
@@ -1464,11 +1682,8 @@
                                                         $select_experience_id->execute();
                                                         foreach($select_experience_id as $print)
                                                         {
-                                                            echo '<option value"'.$print["experience_ID"].'">الجهة : '.$print["issuer_arabic"].' | المسمى الوظيفي : '.$print["job_title_arabic"].'</option>';
-                                                            $_SESSION["experience_ID"] = $print["experience_ID"];
+                                                            echo '<option value="'.$print["experience_ID"].'">الجهة : '.$print["issuer_arabic"].' | المسمى الوظيفي : '.$print["job_title_arabic"].'</option>';
                                                         }
-                                                        if(empty($_SESSION["experience_ID"]))
-                                                        $_SESSION["experience_ID"] = 0;
                                                     }
                                                 ?>
                                             </select>
@@ -1482,8 +1697,12 @@
                         </div>
                     </div>
                     <?php
-                    if(!empty($_SESSION["experience_ID"] && isset($_POST["delete_experience"])))
+                    if(isset($_POST["delete_experience"]))
                     {
+                        $_SESSION["experience_ID"] = $_POST["select_delete_experience"];
+                        if(empty($_SESSION["experience_ID"]))
+                        $_SESSION["experience_ID"] = 0;
+
                         $comfirm_experience_id = $connect_database->prepare('SELECT * FROM experience WHERE experience_ID = '.$_SESSION["experience_ID"].'');
                         $comfirm_experience_id->execute();
 
@@ -1531,7 +1750,7 @@
                                 $_SESSION["submit_type"] = null;
                                 $_SESSION["type"] = null;
                                 echo '    
-                                    <center>
+                                    <center><br>
                                     <div class="row align-items-center justify-content-center">
                                     <div class="col-sm-8 col-md-8 col-lg-5">
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -1546,7 +1765,7 @@
                             else
                             {
                                 echo '    
-                                    <center>
+                                    <center><br>
                                     <div class="row align-items-center justify-content-center">
                                     <div class="col-sm-8 col-md-8 col-lg-5">
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -1561,7 +1780,7 @@
                         elseif(isset($_POST["cancel_delete"]))
                         { 
                             echo '    
-                                <center>
+                                <center><br>
                                 <div class="row align-items-center justify-content-center">
                                 <div class="col-sm-8 col-md-8 col-lg-5">
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -1585,7 +1804,7 @@
                                 <form method="POST" class="mt-6 border p-4 bg-light shadow" style="text-align: center;">
                                     <div class="form-floating">
                                         <div class="dropdown">
-                                            <select name="delete_education" aria-label=".form-select-sm example" class="form-control" dir="rtl" required>
+                                            <select name="select_delete_course" aria-label=".form-select-sm example" class="form-control" dir="rtl" required>
                                                 <option selected value="" disabled>اختر الشهادة</option>
                                                 <?php
                                                     if($connect_database)
@@ -1594,14 +1813,10 @@
                                                         $select_courses_id->execute();
                                                         foreach($select_courses_id as $print)
                                                         {
-                                                            echo '<option value"
-                                                            '.$print["course_ID"].'">الجهة : '.$print["issuer_arabic"].' | مسمى الدورة  : '.$print["course_title_arabic"].'
-                                                            | تاريخ النهاية : '.$print["end_date"].'
+                                                            echo '<option value="'.$print["course_ID"].'">
+                                                            الجهة : '.$print["issuer_arabic"].' | مسمى الدورة  : '.$print["course_title_arabic"].' | تاريخ النهاية : '.$print["end_date"].'
                                                             </option>';
-                                                            $_SESSION["course_ID"] = $print["courses_ID"];
                                                         }
-                                                        if(empty($_SESSION["course_ID"]))
-                                                        $_SESSION["course_ID"] = 0;
                                                     }
                                                 ?>
                                             </select>
@@ -1615,8 +1830,12 @@
                         </div>
                     </div>
                     <?php
-                    if(!empty($_SESSION["course_ID"] && isset($_POST["delete_course"])))
+                    if(isset($_POST["delete_course"]))
                     {
+                        $_SESSION["course_ID"] = $_POST["select_delete_course"];
+                        if(empty($_SESSION["course_ID"]))
+                        $_SESSION["course_ID"] = 0;
+
                         $comfirm_courses_id = $connect_database->prepare('SELECT * FROM courses WHERE course_ID = '.$_SESSION["course_ID"].'');
                         $comfirm_courses_id->execute();
 
@@ -1664,7 +1883,7 @@
                                 $_SESSION["submit_type"] = null;
                                 $_SESSION["type"] = null;
                                 echo '    
-                                    <center>
+                                    <center><br>
                                     <div class="row align-items-center justify-content-center">
                                     <div class="col-sm-8 col-md-8 col-lg-5">
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -1679,7 +1898,7 @@
                             else
                             {
                                 echo '    
-                                    <center>
+                                    <center><br>
                                     <div class="row align-items-center justify-content-center">
                                     <div class="col-sm-8 col-md-8 col-lg-5">
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -1694,7 +1913,7 @@
                         elseif(isset($_POST["cancel_delete"]))
                         { 
                             echo '    
-                                <center>
+                                <center><br>
                                 <div class="row align-items-center justify-content-center">
                                 <div class="col-sm-8 col-md-8 col-lg-5">
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">

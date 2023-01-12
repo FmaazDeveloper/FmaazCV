@@ -42,9 +42,6 @@
                                         <h6>التاريخ: <i>'.$print["start_date"].' - '.$print["end_date"].'</i></h6>
                                     </div>
 
-                                    <div class="col">
-                                        <center> <img src="images/Education/'.$print["photo"].'" alt="'.$print["photo"].'" width="100%" height="100%"> </center>
-                                    </div>
                                     <div class="col" dir="ltr">
                                         <br>
                                         <h6>Issuer: <i>'.$print["issuer_english"].'</i></h6>
