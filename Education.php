@@ -18,7 +18,7 @@
                     $select_education_info = $connect_database->prepare('SELECT * FROM education ORDER BY end_date DESC');
                     $select_education_info->execute();
 
-                        echo '<center><h5>'.$select_education_info->rowCount().' : عدد الشهادات</h5></center>';
+                        echo '<center><h5>'.$select_education_info->rowCount().' : عدد الشهادات</h5></center><br>';
 
                         if($select_education_info->rowCount() == 0)
                             echo '<br><br><br><br><br>';
@@ -27,8 +27,9 @@
                         {
                             echo
                             '
-                                <hr>
-                                <div class="row m-3" dir="rtl">
+                            <center>
+                            <div style="width: 1000px; height: 300px; border: 2px solid black; border-radius: 15px; dir="rtl"">
+                                <div class="row" dir="rtl">
                                     <div class="col" dir="rtl">
                                         <br>
                                         <h6>الجهة: <i>'.$print["issuer_arabic"].'</i></h6>
@@ -42,6 +43,9 @@
                                         <h6>التاريخ: <i>'.$print["start_date"].' - '.$print["end_date"].'</i></h6>
                                     </div>
 
+                                    <div class="col" text-color: blue;>
+                                        |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|
+                                    </div>
                                     <div class="col" dir="ltr">
                                         <br>
                                         <h6>Issuer: <i>'.$print["issuer_english"].'</i></h6>
@@ -55,7 +59,9 @@
                                         <h6>Date: <i>'.$print["end_date"].' - '.$print["start_date"].'</i></h6>
                                     </div>
                                 </div>
-                                <hr>
+                            </div>
+                            </center>
+                            <br>
                             ';
                         }
                 }
