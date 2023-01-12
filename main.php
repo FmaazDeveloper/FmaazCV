@@ -26,5 +26,6 @@
             <br><br><br>
             
         </center>
+        <?php require_once 'footer.php'; ?>
 </body>
 </html>

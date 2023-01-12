@@ -20,6 +20,9 @@
 
                         echo '<center><h5>'.$select_education_info->rowCount().' : عدد الشهادات</h5></center>';
 
+                        if($select_education_info->rowCount() == 0)
+                            echo '<br><br><br><br><br>';
+
                     foreach($select_education_info as $print)
                         {
                             echo
