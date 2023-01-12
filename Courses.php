@@ -28,7 +28,7 @@
                             echo
                             '
                                 <center>
-                                <div style="width: 1000px; height: 300px; border: 2px solid black; border-radius: 15px; dir="rtl"">
+                                <div class="container" style="border: 2px solid black; border-radius: 15px; dir="rtl"">
                                     <div class="row" dir="rtl">
                                         <div class="col" dir="rtl">
                                             <br>
