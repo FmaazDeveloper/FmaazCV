@@ -8,9 +8,9 @@
             require_once 'check_sign_in.php' ;
             require_once 'nav.php' ;
             require_once 'connect_database.php' ;
-        ?>        <center>
-            <br><h3>Hobbies | الهوايات</h3><br>
-        </center>
+        ?>
+        <br><br><br><br>
+        <center><h1>الصفحة تحت الإنشاء</h1></center>
             <!-- <hr>
                 <div class="row m-3" dir="rtl">
                     <div class="col" dir="rtl">
@@ -43,5 +43,7 @@
                     </div>
                 </div>
                 <hr> -->
+                <br><br><br><br>
+                <?php require_once 'footer.php'; ?>
     </body>
 </html>

@@ -40,7 +40,7 @@
                                     </div>
 
                                     <div class="col">
-                                        <center> <img src="images/Education/'.$print["photo"].'" width="100%" height="100%"> </center>
+                                        <center> <img src="images/Education/'.$print["photo"].'" alt="'.$print["photo"].'" width="100%" height="100%"> </center>
                                     </div>
                                     <div class="col" dir="ltr">
                                         <br>
@@ -60,5 +60,6 @@
                         }
                 }
         ?>
+        <?php require_once 'footer.php'; ?>
     </body>
 </html>

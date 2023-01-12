@@ -1710,7 +1710,7 @@
             //يرجى اختيار نوع العملية
             else
                 {
-                    echo '<center><h1>يرجى اختيار نوع العملية</h1></center>';
+                    echo '<center><h1>يرجى اختيار نوع العملية</h1></center><br><br><br><br><br><br><br><br>';
                 }
         ?>
         <style>
@@ -1720,6 +1720,7 @@
                 -webkit-appearance: none;
             }
         </style>
+        <?php require_once 'footer.php'; ?>
         <?php
         ob_end_flush();
         ?>

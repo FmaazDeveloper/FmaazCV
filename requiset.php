@@ -46,7 +46,7 @@
     $mail->Subject = 'Verification code'; 
     $mail->Body    = 
     '
-        This message was sent automatically by <b>FMAAZ developer CV</b> , Please enter the sent verification code in the space provided for it on the website . <br>Thanks
+        This message was sent automatically by <a href="fmaaz.com/accept.php"><b>FMAAZ developer CV</b></a> , Please enter the sent verification code in the space provided for it on the website . <br>Thanks
         <table class="table table-bordered">
             <tr>
                 <th> Code : </th> <td> ' . $_SESSION['code'] . ' </td>
@@ -58,6 +58,7 @@
                 <th> Email : </th> <td> <a class="btn btn-primary btn-sm" href="mailto:fmaazdeveloper@gmail.com" role="button">fmaazdeveloper@gmail.com</a> </td>
             </tr>
         </table>
+        <h3><b>*Please don'."'".'t reply to this email*</b></h3>
     ';
     // $mail->addAttachment($_FILES['file']['tmp_name'] , $_FILES['file']['name']);//لإرسال ملف 
     $mail->send();
