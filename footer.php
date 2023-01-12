@@ -11,11 +11,9 @@
 
             <div class="row" dir="rtl">
 
-                <div class="col" dir="rtl">
                     <h3>التواصل الإجتماعي</h3>
-                    <br><br>
-                    <h3>التواصل برقم الهاتف و الإيميل</h3>
-                </div>
+                    <br>
+                    <h3>Social Media</h3>
 
                 <div class="col" dir="ltr">
                      <!-- Facebook -->
@@ -76,6 +74,9 @@
                         </svg>
                     </a> -->
                     
+                    <h3>التواصل برقم الهاتف و الإيميل</h3>
+                    <h3>Contact phone number and email</h3>
+
                     <!-- Telephone -->
                     <a href="tel:+966563272784" class="me-4 text-reset" target="_blank">
                         <svg width="50" height="50" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
@@ -105,12 +106,6 @@
                     </a>
                     
                     <br><br>
-                </div>
-
-                <div class="col" dir="ltr">
-                    <h3>Social Media</h3>
-                    <br><br>
-                    <h3>Contact phone number and email</h3>
                 </div>
 
             </div>
