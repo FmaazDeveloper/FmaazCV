@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <?php require_once 'head.php' ;?>
+        <?php require_once 'check_sign_in.php' ;?>
     </head>
     <body>
         <br><br><br>

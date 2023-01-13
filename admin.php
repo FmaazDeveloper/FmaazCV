@@ -2,9 +2,9 @@
 <html lang="en">
     <head>
         <?php
-        require_once 'head.php'; 
-        require_once 'check_sign_in.php';
-        require_once 'connect_database.php';
+            require_once 'head.php'; 
+            require_once 'check_sign_in.php';
+            require_once 'connect_database.php';
         ?>
     </head>
     <body>
