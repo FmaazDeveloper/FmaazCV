@@ -12,5 +12,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
     <title>Fmaaz Developer</title>
+    <?php
+        ob_start();
+    ?>
     <?php session_start(); ?>
 </head>

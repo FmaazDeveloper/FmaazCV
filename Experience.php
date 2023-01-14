@@ -28,7 +28,7 @@
                             echo
                             '
                                 <center>
-                                <div style="border: 2px solid black; border-radius: 15px; dir="rtl"">                                <div class="row m-3" dir="rtl">
+                                <div style="border: 2px solid black; border-radius: 15px; dir="rtl"">
                                     <div class="row" dir="rtl">
                                         <div class="col" dir="rtl">
                                             <br>
@@ -41,7 +41,7 @@
                                             <h6>التاريخ: <i>'.$print["start_date"].' - '.$print["end_date"].'</i></h6>
                                         </div>
 
-                                        <div class="col" text-color: blue;>
+                                        <div class="col">
                                             |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|
                                         </div>
 

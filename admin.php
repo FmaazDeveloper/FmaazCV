@@ -8,9 +8,7 @@
         ?>
     </head>
     <body>
-        <?php 
-        ob_start();
-        ?>
+        
         <?php
             if($_SESSION['email'] == $_SESSION["admin_email"] && $_SESSION['name'] == $_SESSION["admin_password"])
             {
@@ -34,7 +32,7 @@
                             <option value="education">Education | التعليم</option>
                             <option value="experience">Experience | الخبرات</option>
                             <option value="courses">Courses | الدورات</option>
-                            <option value="hobbies">Hobbies | الهوايات</option>
+                            <option value="projects">Projects | المشاريع</option>
                         </select>
                     </div>
                 </div>
@@ -50,6 +48,7 @@
             </div>
         </form>
         <?php
+
             if(!empty($_POST["type"]))
                 {
                     switch($_POST["type"])
@@ -63,8 +62,8 @@
                             case "courses" :
                                 $_SESSION["input_type"] = "Courses | الدورات";
                                 break;
-                            case "hobbies" :
-                                $_SESSION["input_type"] = "Hobbies | الهوايات";
+                            case "projects" :
+                                $_SESSION["input_type"] = "Projects | المشاريع";
                                 break;
                             default : 
                                 $_SESSION["input_type"] = "";
@@ -609,11 +608,124 @@
                                     ';
                             }
                 }
-            //Hobbies
-            // elseif(($_SESSION["submit_type"] == "Insert" || $_SESSION["submit_type"] == "Update" || $_SESSION["submit_type"] == "Delete") && $_SESSION["type"] == "hobbies")
-            //     {
-            //         echo '<center><h3>Hobbies</h3><br><h3>الصفحة تحت الإنشاء</h3></center>';
-            //     }
+            //Projects - Insert
+            elseif($_SESSION["submit_type"] == "Insert" && $_SESSION["type"] == "projects")
+                {
+                    ?>
+                        <div class="row m-3" dir="ltr">
+                            <div class="col">
+                                <center><h5><?php echo $_SESSION["input_type"]; ?></h5></center>
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                        <div class="signup-form">
+                                            <form method="POST" class="mt-6 border p-4 bg-light shadow">
+
+                                                <center><h4>عربي</h4></center>
+
+                                                <div class="form-floating">
+                                                    <input type="text" name="project_name_arabic" maxlength="50" class="form-control" id="floatingPassword" placeholder="اسم المشروع" required>
+                                                    <label for="floatingPassword">اسم المشروع</label>
+                                                </div>
+
+                                                <div class="form-floating">
+                                                        <textarea class="form-control" maxlength="1000" name="project_brief_arabic" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
+                                                        <label for="floatingTextarea">نبذة عن المشروع</label>
+                                                </div>
+
+                                                <center><h4>English</h4></center>
+
+                                                <div class="form-floating">
+                                                    <input type="text" name="project_name_english" maxlength="50" class="form-control" id="Issuer" placeholder="Project name" required>
+                                                    <label for="Issuer">Project name</label>
+                                                </div>
+
+                                                <div class="form-floating">
+                                                        <textarea class="form-control" maxlength="1000" name="project_brief_english" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
+                                                        <label for="floatingTextarea">Project brief</label>
+                                                </div>
+
+                                                <center><h4>English | عربي</h4></center>
+
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Project URL | رابط المشروع" disabled>
+                                                    <input type="text" name="project_url" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                </div>
+
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ الانتهاء" disabled>
+                                                    <input type="date" name="project_end_date" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                </div>
+
+                                                <div class="row m-3">
+                                                    <input type="submit" name="project_insert_info" class="btn btn-primary" value="Insert info">
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                        if(!empty($_POST["project_name_arabic"]) && !empty($_POST["project_brief_arabic"]) && !empty($_POST["project_name_english"]) &&
+                        !empty($_POST["project_brief_english"]) && !empty($_POST["project_url"]) && !empty($_POST["project_end_date"]))
+                        {
+                            if(isset($_POST["project_insert_info"]))
+                            {
+                                if($connect_database)
+                                {
+                                    $select_project_id = $connect_database->prepare('SELECT MAX(project_ID) ID FROM projects');
+                                    $select_project_id->execute();
+
+                                    foreach($select_project_id as $print)
+                                        $_SESSION["project_ID"] = $print["ID"];
+                                    if(empty($print["ID"]))
+                                        $_SESSION["project_ID"] = 1;
+                                    if(!empty($print["ID"]))
+                                        $_SESSION["project_ID"]++;
+                                    
+                                    $insert_project_info = $connect_database->prepare
+                                    ('
+                                    INSERT INTO projects VALUES
+                                    (
+                                        '.$_SESSION["project_ID"].' , "'.$_POST["project_name_arabic"].'" , "'.$_POST["project_brief_arabic"].'" ,
+                                        "'.$_POST["project_name_english"].'" , "'.$_POST["project_brief_english"].'" , "'.$_POST["project_url"].'" ,
+                                        "'.$_POST["project_end_date"].'"
+                                    )
+                                    ');
+                                    if($insert_project_info->execute())
+                                    {
+                                        $_SESSION["submit_type"] = null;
+                                        $_SESSION["type"] = null;
+                                        echo '
+                                            <center>
+                                                <div class="row align-items-center justify-content-center">
+                                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                                        <div class="alert alert-success" role="alert">تم إضافة بيانات المشروع بنجاح</div>
+                                                    </div>
+                                                </div>
+                                            </center>
+                                        ';
+                                        header("refresh:2;url= admin.php");
+                                    }
+                                    else
+                                    {
+                                        echo '
+                                            <center>
+                                                <div class="row align-items-center justify-content-center">
+                                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                                        <div class="alert alert-danger" role="alert">! حدث خطأ ما </div>
+                                                    </div>
+                                                </div>
+                                            </center>
+                                        ';
+                                        header("refresh:2;url= admin.php");
+                                    }
+                                }
+                            }
+                        }
+                }
+
             //Eduction - Update
             elseif($_SESSION["submit_type"] == "Update" && $_SESSION["type"] == "education")
                 {
@@ -904,7 +1016,7 @@
                                                 </div>
                                                 </center>
                                             ';
-                                            // echo '</div></div></div><br>';
+                                            echo '</div></div></div><br>';
                                     }
                                     elseif(($_POST["education_level_arabic"] == 'الثانوية العامة') && ($_POST["education_level_english"] != 'High school'))
                                     echo '
@@ -1037,7 +1149,7 @@
                                                                 </div>
                                                                 </center>
                                                             ';
-                                                            header("refresh:2;url= admin.php");
+                                                            header("refresh:2;url=admin.php");
                                                         }
                                                     else
                                                         {
@@ -1057,19 +1169,21 @@
                                                 }
                                         }
                                         elseif(isset($_POST["cancel_update"]))
-                                        { 
+                                        {
+                                            $_SESSION["submit_type"] = null;
+                                            $_SESSION["type"] = null;
                                             echo '    
                                                 <center>
                                                 <div class="row align-items-center justify-content-center">
                                                 <div class="col-sm-8 col-md-8 col-lg-5">
                                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                        <b>تم إلغاء الحذف بنجاح</b>
+                                                        <b>تم إلغاء التحديث بنجاح</b>
                                                     </div>
                                                     </div>
                                                     </div>
                                                 </center>
                                             ';
-                                           header("refresh:2;url= admin.php");
+                                            header("refresh:2;url= admin.php");
                                         }
                 }
             //Experience - Update
@@ -1283,7 +1397,9 @@
                                             }
                                         }
                                         elseif(isset($_POST["cancel_update"]))
-                                        { 
+                                        {
+                                            $_SESSION["submit_type"] = null;
+                                            $_SESSION["type"] = null;
                                             echo '    
                                                 <center>
                                                 <div class="row align-items-center justify-content-center">
@@ -1402,7 +1518,7 @@
                                         </div>
                                     </div>
                                         <?php
-                            }   
+                            }
                         }
                                             if(!empty($_POST["courses_issuer_arabic"]) && !empty($_POST["course_title_arabic"]) && !empty($_POST["courses_brief_arabic"]) &&
                                             !empty($_POST["courses_issuer_english"]) && !empty($_POST["course_title_english"]) && !empty($_POST["courses_brief_english"]) &&
@@ -1492,7 +1608,7 @@
                                                             <div class="row align-items-center justify-content-center">
                                                             <div class="col-sm-8 col-md-8 col-lg-5">
                                                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                            <b>تم تحديث بيانات الشهادة بنجاح</b>
+                                                            <b>تم تحديث بيانات الدورة بنجاح</b>
                                                             </div>
                                                             </div>
                                                             </div>
@@ -1516,7 +1632,9 @@
                                                         }
                                                     }
                                                     elseif(isset($_POST["cancel_update"]))
-                                                    { 
+                                                    {
+                                                        $_SESSION["submit_type"] = null;
+                                                        $_SESSION["type"] = null;
                                                         echo '    
                                                         <center>
                                                         <div class="row align-items-center justify-content-center">
@@ -1530,7 +1648,222 @@
                                                         ';
                                                         header("refresh:2;url= admin.php");
                                                     }
-                                            }
+                }
+            //Projects - Update
+            elseif($_SESSION["submit_type"] == "Update" && $_SESSION["type"] == "projects")
+                {
+                    ?>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-sm-8 col-md-8 col-lg-5">
+                        <center><h5><?php echo $_SESSION["input_type"]; ?></h5></center>
+                            <div class="signup-form">
+                                <form method="POST" class="mt-6 border p-4 bg-light shadow" style="text-align: center;">
+                                    <div class="form-floating">
+                                        <div class="dropdown">
+                                            <select name="select_update_project" aria-label=".form-select-sm example" class="form-control" dir="rtl" required>
+                                                <option selected value="" disabled>اختر المشروع</option>
+                                                <?php
+                                                    if($connect_database)
+                                                    {
+                                                        $select_project_id = $connect_database->prepare('SELECT * FROM projects');
+                                                        $select_project_id->execute();
+                                                        foreach($select_project_id as $print)
+                                                        {
+                                                            echo '<option value="'.$print["project_ID"].'">
+                                                            اسم المشروع : '.$print["name_arabic"].' | رابط المشروع : '.$print["url"].' | تاريخ الإنتهاء : '.$print["end_date"].'
+                                                            </option>';
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                        <div class="row m-3">
+                                            <button type="submit" name="update_project" class="btn btn-success m-3"> Update </button>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <?php
+                    if(isset($_POST["update_project"]))
+                    {
+                        $_SESSION["select_project_ID"] = $_POST["select_update_project"];
+                        if(empty($_SESSION["select_project_ID"]))
+                        $_SESSION["select_project_ID"] = 0;
+
+                        $comfirm_project_id = $connect_database->prepare('SELECT * FROM projects WHERE project_ID = '.$_SESSION["select_project_ID"].'');
+                        $comfirm_project_id->execute();
+
+                        foreach($comfirm_project_id as $print)
+                        {
+                            ?>
+                                    <div class="row align-items-center justify-content-center">
+                                        <div class="col-sm-8 col-md-8 col-lg-5">
+                                            <div class="signup-form">
+                                                <form method="POST" class="mt-6 border p-4 bg-light shadow">
+    
+                                                    <center><h4>عربي</h4></center>
+    
+                                                    <div class="form-floating">
+                                                        <input type="text" name="project_name_arabic" value="<?php echo $print["name_arabic"]; ?>" maxlength="50" class="form-control" id="floatingPassword" placeholder="اسم المشروع" required>
+                                                        <label for="floatingPassword">اسم المشروع</label>
+                                                    </div>
+    
+                                                    <div class="form-floating">
+                                                            <textarea class="form-control" maxlength="1000" name="project_brief_arabic" placeholder="Leave a comment here" id="floatingTextarea" required><?php echo $print["brief_arabic"]; ?></textarea>
+                                                            <label for="floatingTextarea">نبذة عن المشروع</label>
+                                                    </div>
+    
+                                                    <center><h4>English</h4></center>
+    
+                                                    <div class="form-floating">
+                                                        <input type="text" name="project_name_english" value="<?php echo $print["name_english"]; ?>" maxlength="50" class="form-control" id="Issuer" placeholder="Project name" required>
+                                                        <label for="Issuer">Project name</label>
+                                                    </div>
+    
+                                                    <div class="form-floating">
+                                                            <textarea class="form-control" maxlength="1000" name="project_brief_english" placeholder="Leave a comment here" id="floatingTextarea" required><?php echo $print["brief_english"]; ?></textarea>
+                                                            <label for="floatingTextarea">Project brief</label>
+                                                    </div>
+    
+                                                    <center><h4>English | عربي</h4></center>
+    
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Project URL | رابط المشروع" disabled>
+                                                        <input type="text" name="project_url" value="<?php echo $print["url"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                    </div>
+    
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ الانتهاء" disabled>
+                                                        <input type="date" name="project_end_date" value="<?php echo $print["end_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                    </div>
+    
+                                                    <div class="row m-3">
+                                                        <input type="submit" name="project_update_info" class="btn btn-success" value="Update info">
+                                                    </div>
+    
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php
+                        }
+                    }
+                                if(!empty($_POST["project_name_arabic"]) && !empty($_POST["project_brief_arabic"]) && !empty($_POST["project_name_english"]) &&
+                                !empty($_POST["project_brief_english"]) && !empty($_POST["project_url"]) && !empty($_POST["project_end_date"]))
+                                {
+                                    $_SESSION["project_name_arabic"] = $_POST["project_name_arabic"];$_SESSION["project_brief_arabic"] = $_POST["project_brief_arabic"];
+                                    $_SESSION["project_name_english"] = $_POST["project_name_english"];$_SESSION["project_brief_english"] = $_POST["project_brief_english"];
+                                    $_SESSION["project_url"] = $_POST["project_url"];$_SESSION["project_end_date"] = $_POST["project_end_date"];
+
+                                    if(isset($_POST["project_update_info"]))
+                                    {
+
+                                        $comfirm_project_id = $connect_database->prepare('SELECT * FROM projects WHERE project_ID = '.$_SESSION["select_project_ID"].'');
+                                        $comfirm_project_id->execute();
+
+                                        foreach($comfirm_project_id as $print)
+                                        {
+                                            echo '
+                                                <center>
+                                                    <br><br>
+                                                    <div class="row align-items-center justify-content-center">
+                                                        <div class="col-sm-8 col-md-8 col-lg-5">
+                                                            Are you sure you want to <b>Update</b> this information ?
+                                                            <table class="table-success table table-bordered" style="font-size:80%;" dir="rtl">
+                                                                <tr class="table-warning">
+                                                                    <th colspan="6"><center> بيانات المشروع </center></th>
+                                                                </tr>
+                                                                <tr class="table-success">
+                                                                    <th> اسم المشروع </th> <th> نبذة عن المشروع </th>
+                                                                    <th> Project name </th> <th> Project brief </th> 
+                                                                    <th> رابط المشروع </th> <th> تاريخ الإنتهاء </th>
+                                                                </tr>
+                                                                <tr class="table-info">
+                                                                    <th> '.$_SESSION["project_name_arabic"].' </th> <th> '.$_SESSION["project_brief_arabic"].' </th>
+                                                                    <th> '.$_SESSION["project_name_english"].' </th> <th> '.$_SESSION["project_brief_english"].' </th>
+                                                                    <th> '.$_SESSION["project_url"].' </th> <th> '.$_SESSION["project_end_date"].' </th>
+                                                                </tr>
+                                                            </table>
+                                            ';
+                                        }
+                                        echo '
+                                            <form method="POST">
+                                                <fieldset>
+                                                    <div class="col-auto">
+                                                        <button type="submit" name="confirm_update" class="btn btn-outline-success m-3"> Yes </button>
+                                                        <button type="submit" name="cancel_update" class="btn btn-outline-success m-3"> No </button>
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                            </div>
+                                            </div>
+                                            </center>
+                                        ';
+                                    }
+                                }
+                                    if(isset($_POST["confirm_update"]))
+                                    {
+                                        $update_project = $connect_database->prepare('
+                                        UPDATE projects SET
+                                        name_arabic = "'.$_SESSION["project_name_arabic"].'" , brief_arabic = "'.$_SESSION["project_brief_arabic"].'" ,
+                                        name_english = "'.$_SESSION["project_name_english"].'" , brief_english = "'.$_SESSION["project_brief_english"].'" ,
+                                        url = "'.$_SESSION["project_url"].'" , end_date = "'.$_SESSION["project_end_date"].'"
+                                        WHERE project_ID = '.$_SESSION["select_project_ID"].'
+                                        ');
+                                        if($update_project->execute())
+                                        {
+                                            $_SESSION["submit_type"] = null;
+                                            $_SESSION["type"] = null;
+                                            echo '    
+                                                <center><br>
+                                                    <div class="row align-items-center justify-content-center">
+                                                        <div class="col-sm-8 col-md-8 col-lg-5">
+                                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                                <b>تم تحديث بيانات المشروع بنجاح</b>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </center>
+                                            ';
+                                            header("refresh:3;url= admin.php");
+                                        }
+                                        else
+                                        {
+                                            echo '    
+                                                <center><br>
+                                                    <div class="row align-items-center justify-content-center">
+                                                        <div class="col-sm-8 col-md-8 col-lg-5">
+                                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                <b>! حدث خطأ ما</b>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </center>
+                                            ';
+                                        }
+                                    }
+                                    elseif(isset($_POST["cancel_update"]))
+                                    {
+                                        $_SESSION["submit_type"] = null;
+                                        $_SESSION["type"] = null;
+                                        echo '    
+                                            <center><br>
+                                                <div class="row align-items-center justify-content-center">
+                                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                            <b>تم إلغاء التحديث بنجاح</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </center>
+                                        ';
+                                        header("refresh:2;url= admin.php");
+                                    }
+                }
+
             //Eduction - Delete
             elseif($_SESSION["submit_type"] == "Delete" && $_SESSION["type"] == "education")
                 {
@@ -1551,7 +1884,7 @@
                                                         $select_education_id->execute();
                                                         foreach($select_education_id as $print)
                                                         {
-                                                            echo '<option value"'.$print["education_ID"].'">الجهة : '.$print["issuer_arabic"].' | التخصص : '.$print["major_arabic"].' | المرحله : '.$print["level_arabic"].'</option>';
+                                                            echo '<option value="'.$print["education_ID"].'">الجهة : '.$print["issuer_arabic"].' | التخصص : '.$print["major_arabic"].' | المرحله : '.$print["level_arabic"].'</option>';
                                                         }
                                                     }
                                                 ?>
@@ -1623,7 +1956,7 @@
                                     <div class="row align-items-center justify-content-center">
                                     <div class="col-sm-8 col-md-8 col-lg-5">
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            <b>تم حذف البيانات بنجاح</b>
+                                            <b>تم حذف بيانات التعليم بنجاح</b>
                                         </div>
                                     </div>
                                     </div>
@@ -1647,7 +1980,9 @@
                             }
                         }
                         elseif(isset($_POST["cancel_delete"]))
-                        { 
+                        {
+                            $_SESSION["submit_type"] = null;
+                            $_SESSION["type"] = null;
                             echo '    
                                 <center><br>
                                 <div class="row align-items-center justify-content-center">
@@ -1754,7 +2089,7 @@
                                     <div class="row align-items-center justify-content-center">
                                     <div class="col-sm-8 col-md-8 col-lg-5">
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            <b>تم حذف البيانات بنجاح</b>
+                                            <b>تم حذف بيانات الخبرة بنجاح</b>
                                         </div>
                                     </div>
                                     </div>
@@ -1778,7 +2113,9 @@
                             }
                         }
                         elseif(isset($_POST["cancel_delete"]))
-                        { 
+                        {
+                            $_SESSION["submit_type"] = null;
+                            $_SESSION["type"] = null;
                             echo '    
                                 <center><br>
                                 <div class="row align-items-center justify-content-center">
@@ -1887,7 +2224,7 @@
                                     <div class="row align-items-center justify-content-center">
                                     <div class="col-sm-8 col-md-8 col-lg-5">
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            <b>تم حذف البيانات بنجاح</b>
+                                            <b>تم حذف بيانات الدورة بنجاح</b>
                                         </div>
                                     </div>
                                     </div>
@@ -1911,7 +2248,144 @@
                             }
                         }
                         elseif(isset($_POST["cancel_delete"]))
-                        { 
+                        {
+                            $_SESSION["submit_type"] = null;
+                            $_SESSION["type"] = null;
+                            echo '    
+                                <center><br>
+                                <div class="row align-items-center justify-content-center">
+                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <b>تم إلغاء الحذف بنجاح</b>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </center>
+                            ';
+                            header("refresh:2;url= admin.php");
+                        }
+                }
+            //Projects - Delete
+            elseif($_SESSION["submit_type"] == "Delete" && $_SESSION["type"] == "projects")
+                {
+                    ?>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-sm-8 col-md-8 col-lg-5">
+                        <center><h5><?php echo $_SESSION["input_type"]; ?></h5></center>
+                            <div class="signup-form">
+                                <form method="POST" class="mt-6 border p-4 bg-light shadow" style="text-align: center;">
+                                    <div class="form-floating">
+                                        <div class="dropdown">
+                                            <select name="select_delete_project" aria-label=".form-select-sm example" class="form-control" dir="rtl" required>
+                                                <option selected value="" disabled>اختر المشروع</option>
+                                                <?php
+                                                    if($connect_database)
+                                                    {
+                                                        $select_project_id = $connect_database->prepare('SELECT * FROM projects');
+                                                        $select_project_id->execute();
+                                                        foreach($select_project_id as $print)
+                                                        {
+                                                            echo '<option value="'.$print["project_ID"].'">
+                                                            اسم المشروع : '.$print["name_arabic"].' | رابط المشروع : '.$print["url"].' | تاريخ الإنتهاء : '.$print["end_date"].'
+                                                            </option>';
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                        <div class="row m-3">
+                                            <button type="submit" name="delete_project" class="btn btn-danger m-3"> Delete </button>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                    if(isset($_POST["delete_project"]))
+                    {
+                        $_SESSION["project_ID"] = $_POST["select_delete_project"];
+                        if(empty($_SESSION["project_ID"]))
+                        $_SESSION["project_ID"] = 0;
+
+                        $comfirm_project_id = $connect_database->prepare('SELECT * FROM projects WHERE project_ID = '.$_SESSION["project_ID"].'');
+                        $comfirm_project_id->execute();
+
+                        foreach($comfirm_project_id as $print)
+                        {
+                            echo '
+                                <center>
+                                <br><br>
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                    Are you sure you want to <b>Delete</b> this information ?
+                                    <table class="table-success table table-bordered" style="font-size:80%;" dir="rtl">
+                                        <tr class="table-warning">
+                                            <th colspan="3"><center> بيانات المشروع </center></th>
+                                        </tr>
+                                        <tr class="table-success">
+                                            <th> اسم المشروع </th> <th> رابط المشروع </th> <th> تاريخ الإنتهاء </th>
+                                        </tr>
+                                        <tr class="table-info">
+                                            <th> '.$print["name_arabic"].' </th> <th> '.$print["url"].' </th> <th> '.$print["end_date"].' </th>
+                                        </tr>
+                                    </table>
+                            ';
+                        }
+
+                        echo '
+                            <form method="POST">
+                                <fieldset>
+                                    <div class="col-auto">
+                                        <button type="submit" name="confirm_delete" class="btn btn-outline-danger m-3"> Yes </button>
+                                        <button type="submit" name="cancel_delete" class="btn btn-outline-danger m-3"> No </button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            </div>
+                            </div>
+                            </center>
+                        ';
+                    }
+                    if(isset($_POST["confirm_delete"]))
+                        {
+                            $delete_project = $connect_database->prepare('DELETE FROM projects WHERE project_ID = '.$_SESSION["project_ID"].'');
+                            if($delete_project->execute())
+                            {
+                                $_SESSION["submit_type"] = null;
+                                $_SESSION["type"] = null;
+                                echo '    
+                                    <center><br>
+                                    <div class="row align-items-center justify-content-center">
+                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <b>تم حذف بيانات المشروع بنجاح</b>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </center>
+                                ';
+                                header("refresh:3;url= admin.php");
+                            }
+                            else
+                            {
+                                echo '    
+                                    <center><br>
+                                    <div class="row align-items-center justify-content-center">
+                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <b>! حدث خطأ ما</b>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </center>
+                                ';
+                            }
+                        }
+                        elseif(isset($_POST["cancel_delete"]))
+                        {
+                            $_SESSION["submit_type"] = null;
+                            $_SESSION["type"] = null;
                             echo '    
                                 <center><br>
                                 <div class="row align-items-center justify-content-center">
@@ -1940,8 +2414,6 @@
             }
         </style>
         <?php require_once 'footer.php'; ?>
-        <?php
-        ob_end_flush();
-        ?>
+        
     </body>
 </html>

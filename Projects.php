@@ -4,43 +4,45 @@
         <?php require_once 'head.php' ;?>
     </head>
     <body>
-        <?php
+        <?php 
             require_once 'check_sign_in.php' ;
             require_once 'nav.php' ;
             require_once 'connect_database.php' ;
         ?>
         <center>
-            <br><h3>Courses | الدورات</h3><br>
+            <br><h3>Experience | الخبرات</h3><br>
         </center>
+        
         <?php
             if($connect_database)
                 {
-                    $select_courses_info = $connect_database->prepare('SELECT * FROM courses');
-                    $select_courses_info->execute();
+                    $select_project_info = $connect_database->prepare('SELECT * FROM projects');
+                    $select_project_info->execute();
 
-                    echo '<center><h5>'.$select_courses_info->rowCount().' : عدد الشهادات</h5></center><br>';
+                    echo '<center><h5>'.$select_project_info->rowCount().' : عدد المشاريع</h5></center><br>';
 
-                    if($select_courses_info->rowCount() == 0)
+                    if($select_project_info->rowCount() == 0)
                         echo '<br><br><br><br><br>';
 
-                    foreach($select_courses_info as $print)
+                    foreach($select_project_info as $print)
                         {
                             echo
                             '
                                 <center>
                                 <div class="container" style="border: 2px solid black; border-radius: 15px; dir="rtl"">
+                                    <div class="row">
+                                        <div class="col">
+                                        <a href="../'.$print["url"].'/index.php" target="_blank"><h3>'.$print["name_english"].'</h3></a>
+                                        </div>
+                                    </div>
                                     <div class="row" dir="rtl">
                                         <div class="col" dir="rtl">
                                             <br>
-                                            <h6>الجهة: <i>'.$print["issuer_arabic"].'</i></h6>
+                                            <h6>اسم المشروع: <i>'.$print["name_arabic"].'</i></h6>
                                             <br>
-                                            <h6>مسمى الدورة: <i>'.$print["course_title_arabic"].'</i></h6>
+                                            <h6>نبذة عن المشروع: <i>'.$print["brief_arabic"].'</i></h6>
                                             <br>
-                                            <h6>نبذة: <i>'.$print["brief_arabic"].'</i></h6>
-                                            <br>
-                                            <h6>عدد الساعات: <i>'.$print["hours"].'</i></h6>
-                                            <br>
-                                            <h6>التاريخ: <i>'.$print["start_date"].' - '.$print["end_date"].'</i></h6>
+                                            <h6>تاريخ الإنتهاء: <i>'.$print["end_date"].'</i></h6>
                                         </div>
 
                                         <div class="col">
@@ -49,15 +51,11 @@
 
                                         <div class="col" dir="ltr">
                                             <br>
-                                            <h6>Issuer: <i>'.$print["issuer_english"].'</i></h6>
+                                            <h6>Project name: <i>F'.$print["name_english"].'</i></h6>
                                             <br>
-                                            <h6>Course Title: <i>'.$print["course_title_english"].'</i></h6>
+                                            <h6>Project brief: <i>'.$print["brief_english"].'</i></h6>
                                             <br>
-                                            <h6>Brief: <i>'.$print["brief_english"].'</i></h6>
-                                            <br>
-                                            <h6>Hours: <i>'.$print["hours"].'</i></h6>
-                                            <br>
-                                            <h6>Date: <i>'.$print["end_date"].' - '.$print["start_date"].'</i></h6>
+                                            <h6>End date: <i>'.$print["end_date"].'</i></h6>
                                         </div>
                                     </div>
                                 </div>

@@ -4,7 +4,7 @@
         <?php require_once 'head.php' ;?>
     </head>
     <body>
-        <?php 
+        <?php
             require_once 'check_sign_in.php' ;
             require_once 'nav.php' ;
             require_once 'connect_database.php' ;
@@ -43,7 +43,7 @@
                                         <h6>التاريخ: <i>'.$print["start_date"].' - '.$print["end_date"].'</i></h6>
                                     </div>
 
-                                    <div class="col" text-color: blue;>
+                                    <div class="col">
                                         |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|
                                     </div>
                                     <div class="col" dir="ltr">
