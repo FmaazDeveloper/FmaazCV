@@ -22,7 +22,7 @@ ob_start();
                 </li>
                 _
                 <li class="nav-item">
-                    <a class="nav-link" style="color: black;" href="projects.php">Projects | المشاريع</a>
+                    <a class="nav-link" style="color: black;" href="Projects.php">Projects | المشاريع</a>
                 </li>
                 &nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;
                 <li class="nav-item">

@@ -10,7 +10,7 @@
             require_once 'connect_database.php' ;
         ?>
         <center>
-            <br><h3>Experience | الخبرات</h3><br>
+            <br><h3>Projects | المشاريع</h3><br>
         </center>
         
         <?php
@@ -32,7 +32,7 @@
                                 <div class="container" style="border: 2px solid black; border-radius: 15px; dir="rtl"">
                                     <div class="row">
                                         <div class="col">
-                                        <a href="../'.$print["url"].'/index.php" target="_blank"><h3>'.$print["name_english"].'</h3></a>
+                                        <a href="'.$print["url"].'/index.php" target="_blank"><h3>'.$print["name_english"].'</h3></a>
                                         </div>
                                     </div>
                                     <div class="row" dir="rtl">
@@ -51,7 +51,7 @@
 
                                         <div class="col" dir="ltr">
                                             <br>
-                                            <h6>Project name: <i>F'.$print["name_english"].'</i></h6>
+                                            <h6>Project name: <i>'.$print["name_english"].'</i></h6>
                                             <br>
                                             <h6>Project brief: <i>'.$print["brief_english"].'</i></h6>
                                             <br>
