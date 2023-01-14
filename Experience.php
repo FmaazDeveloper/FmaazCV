@@ -18,7 +18,7 @@
                     $select_experience_info = $connect_database->prepare('SELECT * FROM experience');
                     $select_experience_info->execute();
 
-                    echo '<center><h5>'.$select_experience_info->rowCount().' : عدد الشهادات</h5></center><br>';
+                    echo '<center><h5>'.$select_experience_info->rowCount().' : عدد الخبرات</h5></center><br>';
 
                     if($select_experience_info->rowCount() == 0)
                         echo '<br><br><br><br><br>';

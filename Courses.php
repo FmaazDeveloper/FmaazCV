@@ -18,7 +18,7 @@
                     $select_courses_info = $connect_database->prepare('SELECT * FROM courses');
                     $select_courses_info->execute();
 
-                    echo '<center><h5>'.$select_courses_info->rowCount().' : عدد الشهادات</h5></center><br>';
+                    echo '<center><h5>'.$select_courses_info->rowCount().' : عدد الدورات</h5></center><br>';
 
                     if($select_courses_info->rowCount() == 0)
                         echo '<br><br><br><br><br>';

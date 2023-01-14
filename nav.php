@@ -26,7 +26,7 @@ ob_start();
                 </li>
                 &nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;
                 <li class="nav-item">
-                    <a class="nav-link" style="color: blue;" href="CV/FMAAZ CV.pdf">CV PDF</a>
+                    <a class="nav-link" style="color: blue;" href="CV/FMAAZ CV.pdf" target="_blank">CV PDF</a>
                 </li>
                 <?php
                     if($_SESSION['email'] == $_SESSION["admin_email"] && $_SESSION['name'] == $_SESSION["admin_password"])
