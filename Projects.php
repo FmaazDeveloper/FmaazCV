@@ -32,7 +32,7 @@
                                 <div class="container" style="border: 2px solid black; border-radius: 15px; dir="rtl"">
                                     <div class="row">
                                         <div class="col">
-                                        <a href="'.$print["url"].'/index.php" target="_blank"><h3>'.$print["name_english"].'</h3></a>
+                                        <a href="'.$print["url"].'" target="_blank"><h3>'.$print["name_english"].'</h3></a>
                                         </div>
                                     </div>
                                     <div class="row" dir="rtl">
