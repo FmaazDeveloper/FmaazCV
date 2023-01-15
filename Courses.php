@@ -27,41 +27,58 @@
                         {
                             echo
                             '
-                                <center>
                                 <div class="container" style="border: 2px solid black; border-radius: 15px; dir="rtl"">
                                     <div class="row" dir="rtl">
-                                        <div class="col" dir="rtl">
-                                            <br>
-                                            <h6><b>الجهة</b><br> '.$print["issuer_arabic"].'</h6>
-                                            <br>
-                                            <h6><b>مسمى الدورة</b><br> '.$print["course_title_arabic"].'</h6>
-                                            <br>
-                                            <h6><b>نبذة</b><br> '.$print["brief_arabic"].'</h6>
-                                            <br>
-                                            <h6><b>عدد الساعات</b><br>'.$print["hours"].'</h6>
-                                            <br>
-                                            <h6><b>التاريخ</b><br> '.$print["start_date"].' - '.$print["end_date"].'</h6>
+
+                                        <div class="row">
+                                            <div class="col" dir="rtl">
+                                                <br><center><h6><b>الجهة</b><br><br> '.$print["issuer_arabic"].'</h6></center>
+                                            </div>
+                                            <div class="col" dir="ltr">
+                                                <br><center><h6><b>Issuer</b><br><br> '.$print["issuer_english"].'</h6></center>
+                                            </div>
                                         </div>
 
-                                        <div class="col">
-                                            |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|
+                                        <div class="row">
+                                            <div class="col" dir="rtl">
+                                                <br><center><h6><b>مسمى الدورة</b><br><br> '.$print["course_title_arabic"].'</h6></center>
+                                            </div>
+                                            <div class="col" dir="ltr">
+                                                <br><center><h6><b>Course Title</b><br><br> '.$print["course_title_english"].'</h6></center>
+                                            </div>
                                         </div>
 
-                                        <div class="col" dir="ltr">
-                                            <br>
-                                            <h6><b>Issuer</b><br> '.$print["issuer_english"].'</h6>
-                                            <br>
-                                            <h6><b>Course Title</b><br> '.$print["course_title_english"].'</h6>
-                                            <br>
-                                            <h6><b>Brief</b><br> '.$print["brief_english"].'</h6>
-                                            <br>
-                                            <h6><b>Hours</b><br> '.$print["hours"].'</h6>
-                                            <br>
-                                            <h6><b>Date</b><br> '.$print["end_date"].' - '.$print["start_date"].'</h6>
+                                        <div class="row">
+                                            <div class="col" dir="rtl">
+                                                <br><center><h6><b>نبذة</b><br></center>'.$print["brief_arabic"].'</h6>
+                                            </div>
+
+                                            <div class="col" dir="ltr">
+                                                <br><center><h6><b>Brief</b><br></center>'.$print["brief_english"].'</h6>
+                                            </div>
                                         </div>
+
+                                        <div class="row">
+                                            <div class="col" dir="rtl">
+                                                <br><center><h6><b>عدد الساعات</b><br><br> '.$print["hours"].'</h6></center>
+                                            </div>
+                                            <div class="col" dir="ltr">
+                                                <br><center><h6><b>Hours</b><br><br> '.$print["hours"].'</h6></center>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col" dir="rtl">
+                                                <br><center><h6><b>التاريخ</b><br><br> '.$print["start_date"].' - '.$print["end_date"].'</h6></center>
+                                            </div>
+                                            <div class="col" dir="ltr">
+                                                <br><center><h6><b>Date</b><br><br> '.$print["end_date"].' - '.$print["start_date"].'</h6></center>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
+                                    <br>
                                 </div>
-                                </center>
                                 <br>
                             ';
                         }

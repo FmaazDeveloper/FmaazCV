@@ -154,7 +154,7 @@
                                                 <div class="form-floating">
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Start date | تاريخ البداية" disabled>
-                                                        <input type="date" name="education_start_date" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="education_start_date" max="<?php echo $date; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>
@@ -385,7 +385,7 @@
                                                 <div class="form-floating">
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Start date | تاريخ البداية" disabled>
-                                                        <input type="date" name="experience_start_date" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="experience_start_date" max="<?php echo $date; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>
@@ -522,7 +522,7 @@
                                                 <div class="form-floating">
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Start date | تاريخ البداية" disabled>
-                                                        <input type="date" name="courses_start_date" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="courses_start_date" max="<?php echo $date; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>
@@ -1036,7 +1036,7 @@
                                                 <div class="form-floating">
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Start date | تاريخ البداية" disabled>
-                                                        <input type="date" name="education_start_date" value="<?php echo $print["start_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="education_start_date" max="<?php echo $date; ?>" value="<?php echo $print["start_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>
@@ -1367,7 +1367,7 @@
                                                 <div class="form-floating">
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Start date | تاريخ البداية" disabled>
-                                                        <input type="date" name="experience_start_date" value="<?php echo $print["start_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="experience_start_date" max="<?php echo $date; ?>" value="<?php echo $print["start_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>
@@ -1598,7 +1598,7 @@
                                                 <div class="form-floating">
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Start date | تاريخ البداية" disabled>
-                                                        <input type="date" name="courses_start_date" value="<?php echo $print["start_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="courses_start_date" max="<?php echo $date; ?>" value="<?php echo $print["start_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>

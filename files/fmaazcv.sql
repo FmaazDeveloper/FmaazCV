@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 15, 2023 at 05:26 AM
+-- Generation Time: Jan 15, 2023 at 09:10 AM
 -- Server version: 5.7.39-cll-lve
 -- PHP Version: 7.4.30
 
@@ -43,10 +43,10 @@ CREATE TABLE `courses` (
   `course_ID` int(3) NOT NULL,
   `issuer_arabic` varchar(50) NOT NULL,
   `course_title_arabic` varchar(50) NOT NULL,
-  `brief_arabic` varchar(20) NOT NULL,
+  `brief_arabic` varchar(500) NOT NULL,
   `issuer_english` varchar(50) NOT NULL,
   `course_title_english` varchar(50) NOT NULL,
-  `brief_english` varchar(20) NOT NULL,
+  `brief_english` varchar(500) NOT NULL,
   `hours` int(3) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL
@@ -82,12 +82,10 @@ CREATE TABLE `experience` (
   `experience_ID` int(3) NOT NULL,
   `issuer_arabic` varchar(50) NOT NULL,
   `job_title_arabic` varchar(50) NOT NULL,
-  `brief_arabic` varchar(20) NOT NULL,
+  `brief_arabic` varchar(500) NOT NULL,
   `issuer_english` varchar(50) NOT NULL,
   `job_title_english` varchar(50) NOT NULL,
-  `brief_english` varchar(20) NOT NULL,
-  `average` float(5,2) NOT NULL,
-  `average_from` varchar(20) NOT NULL,
+  `brief_english` varchar(500) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -116,7 +114,7 @@ CREATE TABLE `projects` (
   `brief_arabic` varchar(1000) CHARACTER SET utf8 NOT NULL,
   `name_english` varchar(50) CHARACTER SET utf8 NOT NULL,
   `brief_english` varchar(1000) CHARACTER SET utf8 NOT NULL,
-  `url` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `url` varchar(100) CHARACTER SET utf8 NOT NULL,
   `end_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

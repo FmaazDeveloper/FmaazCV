@@ -11,7 +11,7 @@
             <form method="POST">
                 <fieldset>
                     <div class="col-sm-3">
-                        <h1 class="h3 mb-3 fw-normal">Please Fill up your Information</h1>
+                        <h1 class="h3 mb-3 fw-normal">Please fill up your information</h1>
                         <div class="form-floating">
                             <input type="text" name="name" class="form-control" id="floatingPassword" placeholder="Your name" required>
                             <label for="floatingPassword">Your name</label>

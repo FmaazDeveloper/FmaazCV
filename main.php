@@ -18,33 +18,29 @@
                             echo '<br><br><br><br><br>';
 
                     foreach($select_general_brief_info as $print)
-                        {
-                            echo
-                            '
-                            <center>
+                    {
+                        echo
+                        '
                             <div class="container" style="border: 2px solid black; border-radius: 15px; dir="rtl"">
                                 <div class="row" dir="rtl">
 
-                                    <div class="col" dir="rtl">
-                                        <br>
-                                        <h6><b>النبذة العامة</b><br> '.$print["brief_arabic"].'</h6>
-                                    </div>
+                                    <div class="row">
+                                        <div class="col" dir="rtl">
+                                            <br><center><h6><b>النبذة العامة</b><br></center>'.$print["brief_arabic"].'</h6>
+                                        </div>
 
-                                    <div class="col">
-                                        |<br>|<br>|<br>|<br>|<br>|<br>|<br>|
+                                        <div class="col" dir="ltr">
+                                            <br><center><h6><b>General brief</b><br></center>'.$print["brief_english"].'</h6>
+                                        </div>
                                     </div>
-
-                                    <div class="col" dir="lrt">
-                                        <br>
-                                        <h6><b>General brief</b><br> '.$print["brief_english"].'</h6>
-                                    </div>
-
+                                    
                                 </div>
+                                <br>
                             </div>
-                            </center>
                             <br>
-                            ';
-                        }
+                        ';
+                    }
+
                 }
         ?>
         <?php require_once 'footer.php'; ?>

@@ -24,46 +24,64 @@
                             echo '<br><br><br><br><br>';
 
                     foreach($select_education_info as $print)
-                        {
-                            echo
-                            '
-                            <center>
+                    {
+                        echo
+                        '
                             <div class="container" style="border: 2px solid black; border-radius: 15px; dir="rtl"">
                                 <div class="row" dir="rtl">
-                                    <div class="col" dir="rtl">
-                                        <br>
-                                        <h6><b>الجهة</b><br> '.$print["issuer_arabic"].'</h6>
-                                        <br>
-                                        <h6><b>المرحلة</b><br> '.$print["level_arabic"].'</h6>
-                                        <br>
-                                        <h6><b>التخصص</b><br> '.$print["major_arabic"].'</h6>
-                                        <br>
-                                        <h6><b>المعدل</b><br> '.$print["average"].'/'.$print["average_from"].'</h6>
-                                        <br>
-                                        <h6><b>التاريخ</b><br> '.$print["start_date"].' - '.$print["end_date"].'</h6>
+
+                                    <div class="row">
+                                        <div class="col" dir="rtl">
+                                            <br><center><h6><b>الجهة</b><br><br><br>'.$print["issuer_arabic"].'</h6></center>
+                                        </div>
+                                        <div class="col" dir="ltr">
+                                            <br><center><h6><b>Issuer</b><br><br><br>'.$print["issuer_english"].'</h6></center>
+                                        </div>
                                     </div>
 
-                                    <div class="col">
-                                        |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|
+                                    <div class="row">
+                                        <div class="col" dir="rtl">
+                                            <br><center><h6><b>المرحلة</b><br><br>'.$print["level_arabic"].'</h6></center>
+                                        </div>
+                                        <div class="col" dir="ltr">
+                                            <br><center><h6><b>Level</b><br><br>'.$print["level_english"].'</h6></center>
+                                        </div>
                                     </div>
-                                    <div class="col" dir="ltr">
-                                        <br>
-                                        <h6><b>Issuer</b><br> '.$print["issuer_english"].'</h6>
-                                        <br>
-                                        <h6><b>Level</b><br> '.$print["level_english"].'</h6>
-                                        <br>
-                                        <h6><b>Major</b><br> '.$print["major_english"].'</h6>
-                                        <br>
-                                        <h6><b>Average</b><br> '.$print["average"].'/'.$print["average_from"].'</h6>
-                                        <br>
-                                        <h6><b>Date</b><br> '.$print["end_date"].' - '.$print["start_date"].'</h6>
+
+                                    <div class="row">
+                                        <div class="col" dir="rtl">
+                                            <br><center><h6><b>التخصص</b><br><br>'.$print["major_arabic"].'</h6></center>
+                                        </div>
+
+                                        <div class="col" dir="ltr">
+                                            <br><center><h6><b>Major</b><br><br>'.$print["major_english"].'</h6></center>
+                                        </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col" dir="rtl">
+                                            <br><center><h6><b>المعدل</b><br><br>'.$print["average"].' من '.$print["average_from"].'</h6></center>
+                                        </div>
+                                        <div class="col" dir="ltr">
+                                            <br><center><h6><b>Average</b><br><br>'.$print["average"].' From '.$print["average_from"].'</h6></center>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col" dir="rtl">
+                                            <br><center><h6><b>التاريخ</b><br><br> '.$print["start_date"].' - '.$print["end_date"].'</h6></center>
+                                        </div>
+                                        <div class="col" dir="ltr">
+                                            <br><center><h6><b>Date</b><br><br> '.$print["end_date"].' - '.$print["start_date"].'</h6></center>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
+                                <br>
                             </div>
-                            </center>
                             <br>
-                            ';
-                        }
+                        ';
+                    }
                 }
         ?>
         <?php require_once 'footer.php'; ?>

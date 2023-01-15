@@ -25,44 +25,52 @@
                         echo '<br><br><br><br><br>';
 
                     foreach($select_project_info as $print)
-                        {
-                            echo
-                            '
-                                <center>
-                                <div class="container" style="border: 2px solid black; border-radius: 15px; dir="rtl"">
+
+                    {
+                        echo
+                        '
+                            <div class="container" style="border: 2px solid black; border-radius: 15px; dir="rtl"">
+                                <div class="row" dir="rtl">
+
                                     <div class="row">
-                                        <div class="col">
-                                        <a href="'.$print["url"].'" target="_blank"><h3>'.$print["name_english"].'</h3></a>
+                                        <br><center><a href="'.$print["url"].'" target="_blank"><h3>'.$print["name_english"].'</h3></a></center>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col" dir="rtl">
+                                            <br><center><h6><b>اسم المشروع</b><br><br>'.$print["name_arabic"].'</h6></center>
+                                        </div>
+                                        <div class="col" dir="ltr">
+                                            <br><center><h6><b>Project name</b><br><br>'.$print["name_english"].'</h6></center>
                                         </div>
                                     </div>
-                                    <div class="row" dir="rtl">
-                                        <div class="col" dir="rtl">
-                                            <br>
-                                            <h6><b>اسم المشروع</b><br> '.$print["name_arabic"].'</h6>
-                                            <br>
-                                            <h6><b>نبذة عن المشروع</b><br> '.$print["brief_arabic"].'</h6>
-                                            <br>
-                                            <h6><b>تاريخ الإنتهاء</b><br> '.$print["end_date"].'</h6>
-                                        </div>
 
-                                        <div class="col">
-                                            |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|
+                                    <div class="row">
+                                        <div class="col" dir="rtl">
+                                            <br><center><h6><b>نبذة عن المشروع</b><br></center>'.$print["brief_arabic"].'</h6>
+                                        </div>
+                                        <div class="col" dir="ltr">
+                                            <br><center><h6><b>Project brief</b><br></center>'.$print["brief_english"].'</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col" dir="rtl">
+                                            <br><center><h6><b>تاريخ الإنتهاء</b><br><br>'.$print["end_date"].'</h6></center>
                                         </div>
 
                                         <div class="col" dir="ltr">
-                                            <br>
-                                            <h6><b>Project name</b><br> '.$print["name_english"].'</h6>
-                                            <br>
-                                            <h6><b>Project brief</b><br> '.$print["brief_english"].'</h6>
-                                            <br>
-                                            <h6><b>End date</b><br> '.$print["end_date"].'</h6>
+                                            <br><center><h6><b>End date</b><br><br>'.$print["end_date"].'</h6></center>
                                         </div>
                                     </div>
+                                    
                                 </div>
-                                </center>
                                 <br>
-                            ';
-                        }
+                            </div>
+                            <br>
+                        ';
+                    }
+
                 }
         ?>
         <?php require_once 'footer.php'; ?>
