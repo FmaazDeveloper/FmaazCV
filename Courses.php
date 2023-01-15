@@ -15,7 +15,7 @@
         <?php
             if($connect_database)
                 {
-                    $select_courses_info = $connect_database->prepare('SELECT * FROM courses');
+                    $select_courses_info = $connect_database->prepare('SELECT * FROM courses ORDER BY end_date ASC');
                     $select_courses_info->execute();
 
                     echo '<center><h5>'.$select_courses_info->rowCount().' : عدد الدورات</h5></center><br>';

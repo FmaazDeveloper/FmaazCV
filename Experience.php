@@ -15,7 +15,7 @@
         <?php
             if($connect_database)
                 {
-                    $select_experience_info = $connect_database->prepare('SELECT * FROM experience');
+                    $select_experience_info = $connect_database->prepare('SELECT * FROM experience ORDER BY end_date ASC');
                     $select_experience_info->execute();
 
                     echo '<center><h5>'.$select_experience_info->rowCount().' : عدد الخبرات</h5></center><br>';

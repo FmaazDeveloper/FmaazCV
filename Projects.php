@@ -16,7 +16,7 @@
         <?php
             if($connect_database)
                 {
-                    $select_project_info = $connect_database->prepare('SELECT * FROM projects');
+                    $select_project_info = $connect_database->prepare('SELECT * FROM projects ORDER BY end_date ASC');
                     $select_project_info->execute();
 
                     echo '<center><h5>'.$select_project_info->rowCount().' : عدد المشاريع</h5></center><br>';

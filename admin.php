@@ -28,11 +28,12 @@
                 <div class="row m-2">
                     <div class="dropdown" dir="rtl">
                         <select class="col-sm-3" name="type" aria-label=".form-select-sm example" dir="rtl" required>
-                            <option selected value="" disabled>Choose input type | اختر نوع الإدخال</option>
-                            <option value="education">Education | التعليم</option>
-                            <option value="experience">Experience | الخبرات</option>
-                            <option value="courses">Courses | الدورات</option>
-                            <option value="projects">Projects | المشاريع</option>
+                            <option selected value="" disabled>اختر نوع الإدخال | Choose input type</option>
+                            <option value="education">التعليم | Education</option>
+                            <option value="experience">الخبرات | Experience</option>
+                            <option value="courses">الدورات | Courses</option>
+                            <option value="projects">المشاريع | Projects</option>
+                            <option value="general_brief">النبذة العامة | General brief</option>
                         </select>
                     </div>
                 </div>
@@ -65,10 +66,15 @@
                             case "projects" :
                                 $_SESSION["input_type"] = "Projects | المشاريع";
                                 break;
+                            case "general_brief" :
+                                $_SESSION["input_type"] = "General brief | النبذة العامة";
+                                break;
                             default : 
                                 $_SESSION["input_type"] = "";
                         }
+                    $_SESSION["type"] = $_POST["type"];
                 }
+                
             if(isset($_POST["insert"]))
                 $_SESSION["submit_type"] = $_POST["insert"];
             elseif(isset($_POST["update"]))
@@ -77,9 +83,6 @@
                 $_SESSION["submit_type"] = $_POST["delete"];
             elseif(empty($_SESSION["submit_type"]))
                 $_SESSION["submit_type"] = "";
-
-            if(!empty($_POST["type"]))
-                $_SESSION["type"] = $_POST["type"];
 
             //Eduction - Insert
             if($_SESSION["submit_type"] == "Insert" && $_SESSION["type"] == "education")
@@ -702,6 +705,98 @@
                                                 <div class="row align-items-center justify-content-center">
                                                     <div class="col-sm-8 col-md-8 col-lg-5">
                                                         <div class="alert alert-success" role="alert">تم إضافة بيانات المشروع بنجاح</div>
+                                                    </div>
+                                                </div>
+                                            </center>
+                                        ';
+                                        header("refresh:2;url= admin.php");
+                                    }
+                                    else
+                                    {
+                                        echo '
+                                            <center>
+                                                <div class="row align-items-center justify-content-center">
+                                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                                        <div class="alert alert-danger" role="alert">! حدث خطأ ما </div>
+                                                    </div>
+                                                </div>
+                                            </center>
+                                        ';
+                                        header("refresh:2;url= admin.php");
+                                    }
+                                }
+                            }
+                        }
+                }
+            //General brief - Insert
+            elseif($_SESSION["submit_type"] == "Insert" && $_SESSION["type"] == "general_brief")
+                {
+                    ?>
+                        <div class="row m-3" dir="ltr">
+                            <div class="col">
+                                <center><h5><?php echo $_SESSION["input_type"]; ?></h5></center>
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                        <div class="signup-form">
+                                            <form method="POST" class="mt-6 border p-4 bg-light shadow">
+
+                                                <center><h4>عربي</h4></center>
+
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" maxlength="40000" name="general_brief_arabic" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
+                                                    <label for="floatingTextarea">نبذة عامة</label>
+                                                </div>
+
+                                                <center><h4>English</h4></center>
+
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" maxlength="40000" name="general_brief_english" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
+                                                    <label for="floatingTextarea">General brief</label>
+                                                </div>
+
+                                                <div class="row m-3">
+                                                    <input type="submit" name="general_brief_insert_info" class="btn btn-primary" value="Insert info">
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                        if(!empty($_POST["general_brief_arabic"]) && !empty($_POST["general_brief_english"]))
+                        {
+                            if(isset($_POST["general_brief_insert_info"]))
+                            {
+                                if($connect_database)
+                                {
+                                    $select_general_brief_id = $connect_database->prepare('SELECT MAX(general_brief_ID) ID FROM general_brief');
+                                    $select_general_brief_id->execute();
+
+                                    foreach($select_general_brief_id as $print)
+                                        $_SESSION["general_brief_ID"] = $print["ID"];
+                                    if(empty($print["ID"]))
+                                        $_SESSION["general_brief_ID"] = 1;
+                                    if(!empty($print["ID"]))
+                                        $_SESSION["general_brief_ID"]++;
+                                    
+                                    $insert_general_brief_info = $connect_database->prepare
+                                    ('
+                                    INSERT INTO general_brief VALUES
+                                    (
+                                        '.$_SESSION["general_brief_ID"].' , "'.$_POST["general_brief_arabic"].'" , "'.$_POST["general_brief_english"].'"
+                                    )
+                                    ');
+                                    if($insert_general_brief_info->execute())
+                                    {
+                                        $_SESSION["submit_type"] = null;
+                                        $_SESSION["type"] = null;
+                                        echo '
+                                            <center>
+                                                <div class="row align-items-center justify-content-center">
+                                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                                        <div class="alert alert-success" role="alert">تم إضافة بيانات النبذة العامة بنجاح</div>
                                                     </div>
                                                 </div>
                                             </center>
@@ -1863,6 +1958,192 @@
                                         header("refresh:2;url= admin.php");
                                     }
                 }
+            //General brief - Update
+            elseif($_SESSION["submit_type"] == "Update" && $_SESSION["type"] == "general_brief")
+                {
+                    ?>
+                        <div class="row align-items-center justify-content-center">
+                        <div class="col-sm-8 col-md-8 col-lg-5">
+                        <center><h5><?php echo $_SESSION["input_type"]; ?></h5></center>
+                            <div class="signup-form">
+                                <form method="POST" class="mt-6 border p-4 bg-light shadow" style="text-align: center;">
+                                    <div class="form-floating">
+                                        <div class="dropdown">
+                                            <select name="select_update_general_brief" aria-label=".form-select-sm example" class="form-control" dir="rtl" required>
+                                                <option selected value="" disabled>اختر النبذة العامة</option>
+                                                <?php
+                                                    if($connect_database)
+                                                    {
+                                                        $select_project_id = $connect_database->prepare('SELECT * FROM general_brief');
+                                                        $select_project_id->execute();
+                                                        foreach($select_project_id as $print)
+                                                        {
+                                                            echo '<option value="'.$print["general_brief_ID"].'">معرف النبذة العامة : '.$print["general_brief_ID"].'</option>';
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                        <div class="row m-3">
+                                            <button type="submit" name="update_general_brief" class="btn btn-success m-3"> Update </button>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                        if(isset($_POST["update_general_brief"]))
+                        {
+                            $_SESSION["select_general_brief_ID"] = $_POST["select_update_general_brief"];
+                            if(empty($_SESSION["select_general_brief_ID"]))
+                            $_SESSION["select_general_brief_ID"] = 0;
+    
+                            $comfirm_general_brief_id = $connect_database->prepare('SELECT * FROM general_brief WHERE general_brief_ID = '.$_SESSION["select_general_brief_ID"].'');
+                            $comfirm_general_brief_id->execute();
+    
+                            foreach($comfirm_general_brief_id as $print)
+                            {
+                                ?>
+                                    <div class="row m-3" dir="ltr">
+                                        <div class="col">
+                                            <center><h5><?php echo $_SESSION["input_type"]; ?></h5></center>
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-sm-8 col-md-8 col-lg-5">
+                                                    <div class="signup-form">
+                                                        <form method="POST" class="mt-6 border p-4 bg-light shadow">
+
+                                                            <center><h4>عربي</h4></center>
+
+                                                            <div class="form-floating">
+                                                                <textarea class="form-control" maxlength="40000" name="general_brief_arabic" placeholder="Leave a comment here" id="floatingTextarea" required><?php echo $print["brief_arabic"]; ?></textarea>
+                                                                <label for="floatingTextarea">نبذة عامة</label>
+                                                            </div>
+
+                                                            <center><h4>English</h4></center>
+
+                                                            <div class="form-floating">
+                                                                <textarea class="form-control" maxlength="40000" name="general_brief_english" placeholder="Leave a comment here" id="floatingTextarea" required><?php echo $print["brief_english"]; ?></textarea>
+                                                                <label for="floatingTextarea">General brief</label>
+                                                            </div>
+
+                                                            <div class="row m-3">
+                                                                <input type="submit" name="general_brief_update_info" class="btn btn-success" value="Update info">
+                                                            </div>
+                                            
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                            }
+                        }
+                        if(isset($_POST["general_brief_update_info"]))
+                        {
+                            if(!empty($_POST["general_brief_arabic"]) && !empty($_POST["general_brief_english"]))
+                            {
+                                $_SESSION["general_brief_arabic"] = $_POST["general_brief_arabic"];
+                                $_SESSION["general_brief_english"] = $_POST["general_brief_english"];
+
+                                $comfirm_general_brief_id = $connect_database->prepare('SELECT * FROM general_brief WHERE general_brief_ID = '.$_SESSION["select_general_brief_ID"].'');
+                                $comfirm_general_brief_id->execute();
+    
+                                foreach($comfirm_general_brief_id as $print)
+                                {
+                                echo '
+                                    <center>
+                                    <br><br>
+                                    <div class="row align-items-center justify-content-center">
+                                        <div class="col-sm-8 col-md-8 col-lg-5">
+                                        Are you sure you want to <b>Update</b> this information ?
+                                        <table class="table-success table table-bordered" style="font-size:80%;" dir="rtl">
+                                            <tr class="table-warning">
+                                                <th colspan="3"><center> بيانات النبذة العامة </center></th>
+                                            </tr>
+                                            <tr class="table-success">
+                                                <th> معرف النبذة العامة </th> <th> نبذة عامة </th> <th> General brief </th>
+                                            </tr>
+                                            <tr class="table-info">
+                                                <th> '.$print["general_brief_ID"].' </th> <th> '.$_SESSION["general_brief_arabic"].' </th> <th> '.$_SESSION["general_brief_english"].' </th>
+                                            </tr>
+                                        </table>
+                                ';
+                                }
+    
+                                echo '
+                                <form method="POST">
+                                    <fieldset>
+                                        <div class="col-auto">
+                                            <button type="submit" name="confirm_update" class="btn btn-outline-success m-3"> Yes </button>
+                                            <button type="submit" name="cancel_update" class="btn btn-outline-success m-3"> No </button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                </div>
+                                </div>
+                                </center>
+                                ';
+                            }
+                        }
+                        if(isset($_POST["confirm_update"]))
+                            {
+                                $update_general_brief = $connect_database->prepare
+                                ('
+                                UPDATE general_brief SET brief_arabic = "'.$_SESSION["general_brief_arabic"].'" , brief_english = "'.$_SESSION["general_brief_english"].'"
+                                WHERE general_brief_ID = '.$_SESSION["select_general_brief_ID"].'
+                                ');
+                                if($update_general_brief->execute())
+                                {
+                                    $_SESSION["submit_type"] = null;
+                                    $_SESSION["type"] = null;
+                                    echo '    
+                                        <center><br>
+                                        <div class="row align-items-center justify-content-center">
+                                        <div class="col-sm-8 col-md-8 col-lg-5">
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                <b>تم تحديث بيانات النبذة العامة بنجاح</b>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </center>
+                                    ';
+                                    header("refresh:3;url= admin.php");
+                                }
+                                else
+                                {
+                                    echo '    
+                                        <center><br>
+                                        <div class="row align-items-center justify-content-center">
+                                        <div class="col-sm-8 col-md-8 col-lg-5">
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <b>! حدث خطأ ما</b>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </center>
+                                    ';
+                                }
+                            }
+                            elseif(isset($_POST["cancel_update"]))
+                            {
+                                $_SESSION["submit_type"] = null;
+                                $_SESSION["type"] = null;
+                                echo '    
+                                    <center><br>
+                                    <div class="row align-items-center justify-content-center">
+                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <b>تم إلغاء التحديث بنجاح</b>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </center>
+                                ';
+                                header("refresh:2;url= admin.php");
+                            }
+                }
 
             //Eduction - Delete
             elseif($_SESSION["submit_type"] == "Delete" && $_SESSION["type"] == "education")
@@ -2400,6 +2681,140 @@
                             header("refresh:2;url= admin.php");
                         }
                 }
+            //General brief - Delete
+            elseif($_SESSION["submit_type"] == "Delete" && $_SESSION["type"] == "general_brief")
+                {
+                    ?>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-sm-8 col-md-8 col-lg-5">
+                        <center><h5><?php echo $_SESSION["input_type"]; ?></h5></center>
+                            <div class="signup-form">
+                                <form method="POST" class="mt-6 border p-4 bg-light shadow" style="text-align: center;">
+                                    <div class="form-floating">
+                                        <div class="dropdown">
+                                            <select name="select_delete_general_brief" aria-label=".form-select-sm example" class="form-control" dir="rtl" required>
+                                                <option selected value="" disabled>اختر النبذة العامة</option>
+                                                <?php
+                                                    if($connect_database)
+                                                    {
+                                                        $select_project_id = $connect_database->prepare('SELECT * FROM general_brief');
+                                                        $select_project_id->execute();
+                                                        foreach($select_project_id as $print)
+                                                        {
+                                                            echo '<option value="'.$print["general_brief_ID"].'">معرف النبذة العامة : '.$print["general_brief_ID"].'</option>';
+                                                        }
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                        <div class="row m-3">
+                                            <button type="submit" name="delete_general_brief" class="btn btn-danger m-3"> Delete </button>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                        if(isset($_POST["delete_general_brief"]))
+                        {
+                            $_SESSION["general_brief_ID"] = $_POST["select_delete_general_brief"];
+                            if(empty($_SESSION["general_brief_ID"]))
+                            $_SESSION["general_brief_ID"] = 0;
+    
+                            $comfirm_general_brief_id = $connect_database->prepare('SELECT * FROM general_brief WHERE general_brief_ID = '.$_SESSION["general_brief_ID"].'');
+                            $comfirm_general_brief_id->execute();
+    
+                            foreach($comfirm_general_brief_id as $print)
+                            {
+                                echo '
+                                    <center>
+                                    <br><br>
+                                    <div class="row align-items-center justify-content-center">
+                                        <div class="col-sm-8 col-md-8 col-lg-5">
+                                        Are you sure you want to <b>Delete</b> this information ?
+                                        <table class="table-success table table-bordered" style="font-size:80%;" dir="rtl">
+                                            <tr class="table-warning">
+                                                <th colspan="3"><center> بيانات النبذة العامة </center></th>
+                                            </tr>
+                                            <tr class="table-success">
+                                                <th> معرف النبذة العامة </th> <th> نبذة عامة </th> <th> General brief </th>
+                                            </tr>
+                                            <tr class="table-info">
+                                                <th> '.$print["general_brief_ID"].' </th> <th> '.$print["brief_arabic"].' </th> <th> '.$print["brief_english"].' </th>
+                                            </tr>
+                                        </table>
+                                ';
+                            }
+    
+                            echo '
+                                <form method="POST">
+                                    <fieldset>
+                                        <div class="col-auto">
+                                            <button type="submit" name="confirm_delete" class="btn btn-outline-danger m-3"> Yes </button>
+                                            <button type="submit" name="cancel_delete" class="btn btn-outline-danger m-3"> No </button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                                </div>
+                                </div>
+                                </center>
+                            ';
+                        }
+                        if(isset($_POST["confirm_delete"]))
+                            {
+                                $delete_general_brief = $connect_database->prepare('DELETE FROM general_brief WHERE general_brief_ID = '.$_SESSION["general_brief_ID"].'');
+                                if($delete_general_brief->execute())
+                                {
+                                    $_SESSION["submit_type"] = null;
+                                    $_SESSION["type"] = null;
+                                    echo '    
+                                        <center><br>
+                                        <div class="row align-items-center justify-content-center">
+                                        <div class="col-sm-8 col-md-8 col-lg-5">
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                <b>تم حذف بيانات النبذة العامة بنجاح</b>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </center>
+                                    ';
+                                    header("refresh:3;url= admin.php");
+                                }
+                                else
+                                {
+                                    echo '    
+                                        <center><br>
+                                        <div class="row align-items-center justify-content-center">
+                                        <div class="col-sm-8 col-md-8 col-lg-5">
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <b>! حدث خطأ ما</b>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </center>
+                                    ';
+                                }
+                            }
+                            elseif(isset($_POST["cancel_delete"]))
+                            {
+                                $_SESSION["submit_type"] = null;
+                                $_SESSION["type"] = null;
+                                echo '    
+                                    <center><br>
+                                    <div class="row align-items-center justify-content-center">
+                                    <div class="col-sm-8 col-md-8 col-lg-5">
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <b>تم إلغاء الحذف بنجاح</b>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </center>
+                                ';
+                                header("refresh:2;url= admin.php");
+                            }
+                }
+
             //يرجى اختيار نوع العملية
             else
                 {
