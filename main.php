@@ -7,12 +7,7 @@
         <?php
             require_once 'check_sign_in.php' ;
             require_once 'nav.php';
-            echo 
-            '
-                <center>
-                    <br><h4>Welcome <i><b>'.$_SESSION["name"].'</b></i></h4><br>
-                </center>
-            ';
+            echo '<br><br><center><img src="images/Personal/Picture1.jpg" style="border-radius: 75%; border:2px solid black"></center><br><br>';
 
             if($connect_database)
                 {
@@ -25,9 +20,9 @@
                     foreach($select_general_brief_info as $print)
                         {
                             echo
-                            '<br>
+                            '
                             <center>
-                            <div style="border: 2px solid black; border-radius: 15px; dir="rtl"">
+                            <div class="container" style="border: 2px solid black; border-radius: 15px; dir="rtl"">
                                 <div class="row" dir="rtl">
 
                                     <div class="col" dir="rtl">
@@ -36,10 +31,10 @@
                                     </div>
 
                                     <div class="col">
-                                        |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|
+                                        |<br>|<br>|<br>|<br>|<br>|<br>|<br>|
                                     </div>
 
-                                    <div class="col" dir="rtl">
+                                    <div class="col" dir="lrt">
                                         <br>
                                         <h6><b>General brief</b><br> '.$print["brief_english"].'</h6>
                                     </div>

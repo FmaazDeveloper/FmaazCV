@@ -158,7 +158,7 @@
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>
-                                                        <input type="date" name="education_end_date" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="education_end_date" max="<?php echo $date; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                 </div>
                                                 <div class="row m-3">
@@ -389,7 +389,7 @@
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>
-                                                        <input type="date" name="experience_end_date" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="experience_end_date" max="<?php echo $date; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                 </div>
                                                 <div class="row m-3">
@@ -526,7 +526,7 @@
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>
-                                                        <input type="date" name="courses_end_date" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="courses_end_date" max="<?php echo $date; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                 </div>
                                                 <div class="row m-3">
@@ -651,12 +651,12 @@
 
                                                 <div class="input-group mb-3">
                                                     <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Project URL | رابط المشروع" disabled>
-                                                    <input type="text" name="project_url" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                    <input type="text" name="project_url" class="form-control" maxlength="200" aria-label="Text input with segmented dropdown button" required>
                                                 </div>
 
                                                 <div class="input-group mb-3">
                                                     <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ الانتهاء" disabled>
-                                                    <input type="date" name="project_end_date" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                    <input type="date" name="project_end_date" max="<?php echo $date; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                 </div>
 
                                                 <div class="row m-3">
@@ -1040,7 +1040,7 @@
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>
-                                                        <input type="date" name="education_end_date" value="<?php echo $print["end_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="education_end_date" max="<?php echo $date; ?>" value="<?php echo $print["end_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                 </div>
                                                 <div class="row m-3">
@@ -1371,7 +1371,7 @@
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>
-                                                        <input type="date" name="experience_end_date" value="<?php echo $print["end_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="experience_end_date" max="<?php echo $date; ?>" value="<?php echo $print["end_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                 </div>
                                                 <div class="row m-3">
@@ -1602,7 +1602,7 @@
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ النهاية" disabled>
-                                                        <input type="date" name="courses_end_date" value="<?php echo $print["end_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="courses_end_date" max="<?php echo $date; ?>" value="<?php echo $print["end_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
                                                 </div>
                                                 <div class="row m-3">
@@ -1765,7 +1765,7 @@
                                                         foreach($select_project_id as $print)
                                                         {
                                                             echo '<option value="'.$print["project_ID"].'">
-                                                            اسم المشروع : '.$print["name_arabic"].' | رابط المشروع : '.$print["url"].' | تاريخ الإنتهاء : '.$print["end_date"].'
+                                                            اسم المشروع : '.$print["name_english"].' | تاريخ الإنتهاء : '.$print["end_date"].'
                                                             </option>';
                                                         }
                                                     }
@@ -1827,12 +1827,12 @@
     
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="Project URL | رابط المشروع" disabled>
-                                                        <input type="text" name="project_url" value="<?php echo $print["url"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="text" name="project_url" value="<?php echo $print["url"]; ?>" maxlength="200" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
     
                                                     <div class="input-group mb-3">
                                                         <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" value="End date | تاريخ الانتهاء" disabled>
-                                                        <input type="date" name="project_end_date" value="<?php echo $print["end_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
+                                                        <input type="date" name="project_end_date" max="<?php echo $date; ?>" value="<?php echo $print["end_date"]; ?>" class="form-control" aria-label="Text input with segmented dropdown button" required>
                                                     </div>
     
                                                     <div class="row m-3">
