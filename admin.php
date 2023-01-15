@@ -743,14 +743,14 @@
                                                 <center><h4>عربي</h4></center>
 
                                                 <div class="form-floating">
-                                                    <textarea class="form-control" maxlength="40000" name="general_brief_arabic" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
+                                                    <textarea class="form-control" maxlength="4000" name="general_brief_arabic" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
                                                     <label for="floatingTextarea">نبذة عامة</label>
                                                 </div>
 
                                                 <center><h4>English</h4></center>
 
                                                 <div class="form-floating">
-                                                    <textarea class="form-control" maxlength="40000" name="general_brief_english" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
+                                                    <textarea class="form-control" maxlength="4000" name="general_brief_english" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
                                                     <label for="floatingTextarea">General brief</label>
                                                 </div>
 
