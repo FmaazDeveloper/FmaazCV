@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3308
--- Generation Time: Jan 07, 2023 at 06:40 PM
--- Server version: 5.7.36
--- PHP Version: 7.4.26
+-- Host: localhost:3306
+-- Generation Time: Jan 15, 2023 at 05:26 AM
+-- Server version: 5.7.39-cll-lve
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -27,18 +28,10 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
+CREATE TABLE `admin` (
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`email`, `password`) VALUES
-('FmaazDeveloper@gmail.com', 'Mohammad@2004');
 
 -- --------------------------------------------------------
 
@@ -46,8 +39,7 @@ INSERT INTO `admin` (`email`, `password`) VALUES
 -- Table structure for table `courses`
 --
 
-DROP TABLE IF EXISTS `courses`;
-CREATE TABLE IF NOT EXISTS `courses` (
+CREATE TABLE `courses` (
   `course_ID` int(3) NOT NULL,
   `issuer_arabic` varchar(50) NOT NULL,
   `course_title_arabic` varchar(50) NOT NULL,
@@ -57,9 +49,7 @@ CREATE TABLE IF NOT EXISTS `courses` (
   `brief_english` varchar(20) NOT NULL,
   `hours` int(3) NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `photo` varchar(250) NOT NULL,
-  PRIMARY KEY (`course_ID`)
+  `end_date` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -68,8 +58,7 @@ CREATE TABLE IF NOT EXISTS `courses` (
 -- Table structure for table `education`
 --
 
-DROP TABLE IF EXISTS `education`;
-CREATE TABLE IF NOT EXISTS `education` (
+CREATE TABLE `education` (
   `education_ID` int(3) NOT NULL,
   `issuer_arabic` varchar(50) NOT NULL,
   `major_arabic` varchar(50) NOT NULL,
@@ -79,18 +68,9 @@ CREATE TABLE IF NOT EXISTS `education` (
   `level_english` varchar(20) NOT NULL,
   `average` float(5,2) NOT NULL,
   `average_from` varchar(20) NOT NULL,
-  `photo` varchar(250) NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  PRIMARY KEY (`education_ID`)
+  `end_date` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `education`
---
-
-INSERT INTO `education` (`education_ID`, `issuer_arabic`, `major_arabic`, `level_arabic`, `issuer_english`, `major_english`, `level_english`, `average`, `average_from`, `photo`, `start_date`, `end_date`) VALUES
-(1, 'جامعة الملك سعود', 'غبزبغعزهكبغع', 'دبلوم', 'hmy,uyi.u7', 'ihoihn', 'Diploma', 4.25, '5.00', 'GitHub QR.png', '2023-01-06', '2023-01-20');
 
 -- --------------------------------------------------------
 
@@ -98,8 +78,7 @@ INSERT INTO `education` (`education_ID`, `issuer_arabic`, `major_arabic`, `level
 -- Table structure for table `experience`
 --
 
-DROP TABLE IF EXISTS `experience`;
-CREATE TABLE IF NOT EXISTS `experience` (
+CREATE TABLE `experience` (
   `experience_ID` int(3) NOT NULL,
   `issuer_arabic` varchar(50) NOT NULL,
   `job_title_arabic` varchar(50) NOT NULL,
@@ -110,10 +89,82 @@ CREATE TABLE IF NOT EXISTS `experience` (
   `average` float(5,2) NOT NULL,
   `average_from` varchar(20) NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `photo` varchar(250) NOT NULL,
-  PRIMARY KEY (`experience_ID`)
+  `end_date` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `general_brief`
+--
+
+CREATE TABLE `general_brief` (
+  `general_brief_ID` int(3) NOT NULL,
+  `brief_arabic` varchar(4000) NOT NULL,
+  `brief_english` varchar(4000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projects`
+--
+
+CREATE TABLE `projects` (
+  `project_ID` int(11) NOT NULL,
+  `name_arabic` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `brief_arabic` varchar(1000) CHARACTER SET utf8 NOT NULL,
+  `name_english` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `brief_english` varchar(1000) CHARACTER SET utf8 NOT NULL,
+  `url` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `end_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visitors_count`
+--
+
+CREATE TABLE `visitors_count` (
+  `visitors_count` int(11) NOT NULL,
+  `count_date` date NOT NULL,
+  `count_time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`course_ID`);
+
+--
+-- Indexes for table `education`
+--
+ALTER TABLE `education`
+  ADD PRIMARY KEY (`education_ID`);
+
+--
+-- Indexes for table `experience`
+--
+ALTER TABLE `experience`
+  ADD PRIMARY KEY (`experience_ID`);
+
+--
+-- Indexes for table `general_brief`
+--
+ALTER TABLE `general_brief`
+  ADD PRIMARY KEY (`general_brief_ID`);
+
+--
+-- Indexes for table `projects`
+--
+ALTER TABLE `projects`
+  ADD PRIMARY KEY (`project_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
