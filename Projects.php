@@ -38,11 +38,11 @@
                                     <div class="row" dir="rtl">
                                         <div class="col" dir="rtl">
                                             <br>
-                                            <h6>اسم المشروع: <i>'.$print["name_arabic"].'</i></h6>
+                                            <h6><b>اسم المشروع</b><br> '.$print["name_arabic"].'</h6>
                                             <br>
-                                            <h6>نبذة عن المشروع: <i>'.$print["brief_arabic"].'</i></h6>
+                                            <h6><b>نبذة عن المشروع</b><br> '.$print["brief_arabic"].'</h6>
                                             <br>
-                                            <h6>تاريخ الإنتهاء: <i>'.$print["end_date"].'</i></h6>
+                                            <h6><b>تاريخ الإنتهاء</b><br> '.$print["end_date"].'</h6>
                                         </div>
 
                                         <div class="col">
@@ -51,11 +51,11 @@
 
                                         <div class="col" dir="ltr">
                                             <br>
-                                            <h6>Project name: <i>'.$print["name_english"].'</i></h6>
+                                            <h6><b>Project name</b><br> '.$print["name_english"].'</h6>
                                             <br>
-                                            <h6>Project brief: <i>'.$print["brief_english"].'</i></h6>
+                                            <h6><b>Project brief</b><br> '.$print["brief_english"].'</h6>
                                             <br>
-                                            <h6>End date: <i>'.$print["end_date"].'</i></h6>
+                                            <h6><b>End date</b><br> '.$print["end_date"].'</h6>
                                         </div>
                                     </div>
                                 </div>

@@ -32,32 +32,32 @@
                                     <div class="row" dir="rtl">
                                         <div class="col" dir="rtl">
                                             <br>
-                                            <h6>الجهة: <i>'.$print["issuer_arabic"].'</i></h6>
+                                            <h6><b>الجهة</b><br> '.$print["issuer_arabic"].'</h6>
                                             <br>
-                                            <h6>مسمى الدورة: <i>'.$print["course_title_arabic"].'</i></h6>
+                                            <h6><b>مسمى الدورة</b><br> '.$print["course_title_arabic"].'</h6>
                                             <br>
-                                            <h6>نبذة: <i>'.$print["brief_arabic"].'</i></h6>
+                                            <h6><b>نبذة</b><br> '.$print["brief_arabic"].'</h6>
                                             <br>
-                                            <h6>عدد الساعات: <i>'.$print["hours"].'</i></h6>
+                                            <h6><b>عدد الساعات</b><br>'.$print["hours"].'</h6>
                                             <br>
-                                            <h6>التاريخ: <i>'.$print["start_date"].' - '.$print["end_date"].'</i></h6>
+                                            <h6><b>التاريخ</b><br> '.$print["start_date"].' - '.$print["end_date"].'</h6>
                                         </div>
 
                                         <div class="col">
-                                            |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|
+                                            |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|
                                         </div>
 
                                         <div class="col" dir="ltr">
                                             <br>
-                                            <h6>Issuer: <i>'.$print["issuer_english"].'</i></h6>
+                                            <h6><b>Issuer</b><br> '.$print["issuer_english"].'</h6>
                                             <br>
-                                            <h6>Course Title: <i>'.$print["course_title_english"].'</i></h6>
+                                            <h6><b>Course Title</b><br> '.$print["course_title_english"].'</h6>
                                             <br>
-                                            <h6>Brief: <i>'.$print["brief_english"].'</i></h6>
+                                            <h6><b>Brief</b><br> '.$print["brief_english"].'</h6>
                                             <br>
-                                            <h6>Hours: <i>'.$print["hours"].'</i></h6>
+                                            <h6><b>Hours</b><br> '.$print["hours"].'</h6>
                                             <br>
-                                            <h6>Date: <i>'.$print["end_date"].' - '.$print["start_date"].'</i></h6>
+                                            <h6><b>Date</b><br> '.$print["end_date"].' - '.$print["start_date"].'</h6>
                                         </div>
                                     </div>
                                 </div>

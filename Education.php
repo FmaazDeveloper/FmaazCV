@@ -32,31 +32,31 @@
                                 <div class="row" dir="rtl">
                                     <div class="col" dir="rtl">
                                         <br>
-                                        <h6>الجهة: <i>'.$print["issuer_arabic"].'</i></h6>
+                                        <h6><b>الجهة</b><br> '.$print["issuer_arabic"].'</h6>
                                         <br>
-                                        <h6>المرحلة: <i>'.$print["level_arabic"].'</i></h6>
+                                        <h6><b>المرحلة</b><br> '.$print["level_arabic"].'</h6>
                                         <br>
-                                        <h6>التخصص: <i>'.$print["major_arabic"].'</i></h6>
+                                        <h6><b>التخصص</b><br> '.$print["major_arabic"].'</h6>
                                         <br>
-                                        <h6>المعدل: <i>'.$print["average_from"].'/'.$print["average"].'</i></h6>
+                                        <h6><b>المعدل</b><br> '.$print["average"].'/'.$print["average_from"].'</h6>
                                         <br>
-                                        <h6>التاريخ: <i>'.$print["start_date"].' - '.$print["end_date"].'</i></h6>
+                                        <h6><b>التاريخ</b><br> '.$print["start_date"].' - '.$print["end_date"].'</h6>
                                     </div>
 
                                     <div class="col">
-                                        |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|
+                                        |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>|
                                     </div>
                                     <div class="col" dir="ltr">
                                         <br>
-                                        <h6>Issuer: <i>'.$print["issuer_english"].'</i></h6>
+                                        <h6><b>Issuer</b><br> '.$print["issuer_english"].'</h6>
                                         <br>
-                                        <h6>Level: <i>'.$print["level_english"].'</i></h6>
+                                        <h6><b>Level</b><br> '.$print["level_english"].'</h6>
                                         <br>
-                                        <h6>Major: <i>'.$print["major_english"].'</i></h6>
+                                        <h6><b>Major</b><br> '.$print["major_english"].'</h6>
                                         <br>
-                                        <h6>Average: <i>'.$print["average"].'/'.$print["average_from"].'</i></h6>
+                                        <h6><b>Average</b><br> '.$print["average"].'/'.$print["average_from"].'</h6>
                                         <br>
-                                        <h6>Date: <i>'.$print["end_date"].' - '.$print["start_date"].'</i></h6>
+                                        <h6><b>Date</b><br> '.$print["end_date"].' - '.$print["start_date"].'</h6>
                                     </div>
                                 </div>
                             </div>

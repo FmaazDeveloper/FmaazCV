@@ -32,13 +32,13 @@
                                     <div class="row" dir="rtl">
                                         <div class="col" dir="rtl">
                                             <br>
-                                            <h6>الجهة: <i>'.$print["issuer_arabic"].'</i></h6>
+                                            <h6><b>الجهة</b><br> '.$print["issuer_arabic"].'</h6>
                                             <br>
-                                            <h6>المسمى الوظيفي: <i>'.$print["job_title_arabic"].'</i></h6>
+                                            <h6><b>المسمى الوظيفي</b><br> '.$print["job_title_arabic"].'</h6>
                                             <br>
-                                            <h6>نبذة: <i>'.$print["brief_arabic"].'</i></h6>
+                                            <h6><b>نبذة</b><br> '.$print["brief_arabic"].'</h6>
                                             <br>
-                                            <h6>التاريخ: <i>'.$print["start_date"].' - '.$print["end_date"].'</i></h6>
+                                            <h6><b>التاريخ</b><br> '.$print["start_date"].' - '.$print["end_date"].'</h6>
                                         </div>
 
                                         <div class="col">
@@ -47,13 +47,13 @@
 
                                         <div class="col" dir="ltr">
                                             <br>
-                                            <h6>Issuer: <i>F'.$print["issuer_english"].'</i></h6>
+                                            <h6><b>Issuer</b><br> '.$print["issuer_english"].'</h6>
                                             <br>
-                                            <h6>Job title: <i>'.$print["job_title_english"].'</i></h6>
+                                            <h6><b>Job title</b><br> '.$print["job_title_english"].'</h6>
                                             <br>
-                                            <h6>Brief: <i>'.$print["brief_english"].'</i></h6>
+                                            <h6><b>Brief</b><br> '.$print["brief_english"].'</h6>
                                             <br>
-                                            <h6>Date: <i>'.$print["end_date"].' - '.$print["start_date"].'</i></h6>
+                                            <h6><b>Date</b><br> '.$print["end_date"].' - '.$print["start_date"].'</h6>
                                         </div>
                                     </div>
                                 </div>
