@@ -36,7 +36,7 @@
             $mail->CharSet = "UTF-8";//لاستخدام اللغة العربية 
 
             $mail->setFrom('07yahala@gmail.com', 'My Website');//الإميل المرسل منه (الإيميل الخاص بي في الغالب )
-            $mail->addAddress('07yahala@gmail.com');//الإيميل المرسل إليه (الإيميل الخاص ب الزائر في الغالب)
+            $mail->addAddress('autoreply.fmaaz@gmail.com');//الإيميل المرسل إليه (الإيميل الخاص ب الزائر في الغالب)
             // $mail->Subject = 'Here is the subject';//عنوان الرسالة 
             // $mail->Body    = 'This is the HTML message body <b>in bold!</b>';//محتوى الرسالة 
             $mail->Subject = 'دخول للموقع'; 
@@ -51,7 +51,13 @@
                         <th> Email : </th> <td> ' . $_POST['email'] . ' </td>
                     </tr>
                     <tr> 
-                    <th> Code : </th> <td> ' . $_SESSION['code'] . ' </td>
+                        <th> Code : </th> <td> ' . $_SESSION['code'] . ' </td>
+                    </tr>
+                    <tr> 
+                        <th> Date : </th> <td> ' . $date . ' </td>
+                    </tr>
+                    <tr> 
+                        <th> Time : </th> <td> ' . $time . ' </td>
                     </tr>
                 </table>
             ';
