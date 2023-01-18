@@ -52,13 +52,13 @@
                 <th> Code : </th> <td> ' . $_SESSION['code'] . ' </td>
             </tr>
         </table>
-        If you do not receive a verification code , Please send a message to the following mail .
+        If you did not receive the verification code or you have a problem with it , Please send a message to the following mail .
         <table class="table table-bordered">
             <tr>
-                <th> Email : </th> <td> <a class="btn btn-primary btn-sm" href="mailto:fmaazdeveloper@gmail.com" role="button">fmaazdeveloper@gmail.com</a> </td>
+                <th> Email : </th> <td> <a class="btn btn-primary btn-sm" href="mailto:FmaazDeveloper@gmail.com" role="button">FmaazDeveloper@gmail.com</a> </td>
             </tr>
         </table>
-        <h3><b>*Please don'."'".'t reply to this email*</b></h3>
+        <h3><b>*Please do not reply to this email*</b></h3>
     ';
     // $mail->addAttachment($_FILES['file']['tmp_name'] , $_FILES['file']['name']);//لإرسال ملف 
     $mail->send();
