@@ -39,7 +39,7 @@
     $mail->isHTML(true);//لاستخدام HTML و CSS 
     $mail->CharSet = "UTF-8";//لاستخدام اللغة العربية 
 
-    $mail->setFrom('07yahala@gmail.com', 'Check Code');//الإميل المرسل منه (الإيميل الخاص ب الزائر في الغالب)
+    $mail->setFrom('07yahala@gmail.com', 'Verification Code');//الإميل المرسل منه (الإيميل الخاص ب الزائر في الغالب)
     $mail->addAddress($_POST['email']);//الإيميل المرسل إليه (الإيميل الخاص بي في الغالب)
     // $mail->Subject = 'Here is the subject';//عنوان الرسالة 
     // $mail->Body    = 'This is the HTML message body <b>in bold!</b>';//محتوى الرسالة 
