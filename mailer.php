@@ -35,7 +35,7 @@
             $mail->isHTML(true);//لاستخدام HTML و CSS 
             $mail->CharSet = "UTF-8";//لاستخدام اللغة العربية 
 
-            $mail->setFrom('07yahala@gmail.com', 'My Website');//الإميل المرسل منه (الإيميل الخاص بي في الغالب )
+            $mail->setFrom('@gmail.com', 'My Website');//الإميل المرسل منه (الإيميل الخاص بي في الغالب )
             $mail->addAddress('autoreply.fmaaz@gmail.com');//الإيميل المرسل إليه (الإيميل الخاص ب الزائر في الغالب)
             // $mail->Subject = 'Here is the subject';//عنوان الرسالة 
             // $mail->Body    = 'This is the HTML message body <b>in bold!</b>';//محتوى الرسالة 
